@@ -248,13 +248,63 @@
                 </div>
                 <div class="modal-footer">
 
-                <button name="submit" id="submit" type="button" class="btn btn-primary" value="Submit" data-toggle="modal" data-target="#updateModal"  data-dismiss="modal" onsubmit="inputTripBlankValidation()">Submit</button>
+                <button name="submit" id="submit" type="button" class="btn btn-primary" value="Submit" data-toggle="modal" data-target="#appModal"  data-dismiss="modal" onsubmit="inputTripBlankValidation()">Submit</button>
 
                 <button name="close" type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- select application -->
+                <div class="modal fade" id="appModal" tabindex="-1" role="dialog" aria-labelledby="appModalLabel" aria-hidden="true">
+                  <div class="modal-dialog " role="document" >
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="appModalLabel">Select Application</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Application ID</th>
+                                <th scope="col">Application Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">remarks</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>4/8/2021</td>
+                                <td>New</td>
+                                <td>-</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <p class="d-flex justify-content-center align-items-center">
+                            <span class="me-3" style="color: black; font-size: 20px;font-weight:bold;"> Input application ID : </span>
+                            <input type="number" name="inputID" id="inputID" style="margin-left:20px;">
+                          </p>
+                          <p class="d-flex justify-content-center align-items-center">
+                            <span class="me-3" style="color: black; font-size: 20px;font-weight:bold;"> Update Status (rejected/accepted) :
+                            </span>
+                            <input type="text" name="updateStatus" id="updateStatus" placeholder="View documents first" style="margin-left:20px;">
+                          </p>
+                        </div>
+
+                        <div class="modal-footer">
+
+                        <button name="update" id="update" type="button" class="btn btn-primary" value="update" data-toggle="modal" data-target="#updateModal"  data-dismiss="modal" onclick="checkStatus()">Submit</button>
+
+                        <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
         <!-- update status and remakrs -->
                 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
@@ -273,7 +323,6 @@
                                 <th scope="col">Document ID</th>
                                 <th scope="col">Certificate Expiry Date</th>
                                 <th scope="col">Passport Expory Date</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Document Files </th>
                               </tr>
                             </thead>
@@ -282,26 +331,19 @@
                                 <th scope="row">1</th>
                                 <td>2/4/2021</td>
                                 <td>4/8/2021</td>
-                                <td>New</td>
                                 <td>files</td>
                               </tr>
                             </tbody>
                           </table>
-                          <p class="d-flex justify-content-center align-items-center">
-                            <span class="me-3" style="color: black; font-size: 20px;font-weight:bold;"> Update Status (rejected/accepted) : </span>
-                            <input type="text" name="updateStatus" id="updateStatus" style="margin-left:20px;">
-                          </p>
-                        </div>
-
                         <div class="modal-footer">
-
-                        <button name="update" id="update" type="button" class="btn btn-primary" value="update" onclick="checkStatus()">Update</button>
-
-                        <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#appModal">Close</button>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+
+
 
 <!-- organize trip -->
         <div class="modal fade" id="organizeModal" tabindex="-1" role="dialog" aria-labelledby="organizeModalLabel" aria-hidden="true">
@@ -376,7 +418,7 @@
               <div class="container" py-5>
                   <div class="row">
                       <div class="col-md-5 col-sm-6">
-                          <h2>CRS Sdn. Bhd.</h2>
+                          <h2> CRS Sdn. Bhd.</h2>
                           <p>Wisma Help, Jalan Dungun, Bukit Damansara,<br>50490 Kuala Lumpur,<br>Wilayah Persekutuan Kuala Lumpur</p>
                       </div>
 
@@ -449,6 +491,7 @@
             //To restrict future date
               $('#tripDate').attr('min', date);
 
+            //validation on blank
             function tDateValidation(){
               if(document.getElementById('tripDate').value == ''){
                 alert("Trip Date input cannot be blank")
@@ -489,6 +532,7 @@
               }
             }
 
+            //check number of volunteers must be greater than 1
             function numVGreater1(){
               if(document.getElementById('numVolunteers').value < 1){
                 alert("Number of volunteers required cannot be less than 1")
@@ -507,18 +551,19 @@
             }
 
 
-
+            // check the status input
             function checkStatus(){
 
               var result = document.getElementById('updateStatus').value.toLowerCase();
               var reject = "rejected";
               var accept = "accepted";
               if(!(result === reject || result === accept)){
-                alert("Please enter the status correctly")
+                alert("Please enter the status correctly OR pls evaluate the documents first")
                 document.getElementById('updateStatus').focus();
                 throw new Error("This is not an error. This is just to abort javascript.")
               }
             }
+
 
 
 

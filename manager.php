@@ -41,8 +41,9 @@
 
         <section id = "home">
             <video controls="" autoplay="" muted="" loop="">
-                <source src="naturaldisastervideo.mov" type="video/mp4">
+                <source src="naturaldisastervideo.mp4" type="video/mp4">
             </video>
+
 
             <div class = "container">
                 <div class="row pt-5">
@@ -228,7 +229,8 @@
                   </div>
                   <div class="form-group">
                     <label for="phoneNo" class="col-form-label">Phone Number: @eg:0186657886</label>
-                    <input type="tel" class="form-control" id="phoneNo" name="phoneNo" placeholder="phone number" required>
+                    <input type="tel" class="form-control" id="phoneNo" name="phoneNo" onkeyup="checkphoneNo(); return false;" placeholder="phone number" required>
+                    <div id="errorNo"></div>
                   </div>
                   <div class="form-group">
                     <label for="position" class="col-form-label">Position:</label>
@@ -347,6 +349,7 @@
             //To restrict future date
               $('#dateJoined').attr('max', date);
 
+            // check the black field
             function usernameBlankValidation(){
               if(document.getElementById('username').value == ''){
                 alert("Username input cannot be blank")
@@ -395,6 +398,7 @@
               }
             }
 
+            // check the password input
             function checkPass()
             {
               var pass = document.getElementById('password');
@@ -416,6 +420,7 @@
               }
             }
 
+            // check the email input
             function checkEmail()
             {
               var email = document.getElementById('username');
@@ -438,6 +443,26 @@
               }
           }
 
+          function checkphoneNo()
+          {
+            var phoneNo = document.getElementById('phoneNo');
+            var message = document.getElementById('errorNo');
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+
+            if(phoneNo.value.length > 9 && phoneNo.value.length < 14 )
+            {
+              phoneNo.style.backgroundColor = goodColor;
+              message.style.color = goodColor;
+              message.innerHTML = "Good to proceed!"
+            }
+            else
+            {
+              phoneNo.style.backgroundColor = badColor;
+              message.style.color = badColor;
+              message.innerHTML = " Please enter correct phone number!"
+            }
+          }
 
 
             function phoneNumValidation(){
