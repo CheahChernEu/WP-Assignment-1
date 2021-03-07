@@ -31,7 +31,7 @@
                         <a class="nav-link ml-5" href="#staff">Staff</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-5" href="login.php">SignUp/LogIn</a>
+                        <a class="nav-link ml-5" href="homepage.php">Log Out</a>
                     </li>
                   </ul>
                 </div>
