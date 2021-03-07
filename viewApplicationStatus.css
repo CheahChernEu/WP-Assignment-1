@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* TYPOGRAPHY */
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 300;
+}
+
+h1{
+    font-size: 40px;
+    font-weight: 200;
+    line-height: 50px;
+    padding: 20px 0 20px 0;
+}
+
+h2{
+    font-size: 30px;
+    line-height: 40px;
+    margin-top: 0;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 32px;
+}
+
+h4{
+    color: #505050;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+p{
+    color: #757575;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 29px;
+    letter-spacing: 0.5px;
+}
+
+/*MENU*/
+.navbar{
+    background: black;
+}
+.navbar .navbar-brand{
+    font-weight: normal;
+    font-size: 25px;
+    color: white;
+}
+
+.navbar .navbar-brand:hover{
+    background: transparent;
+    color: #fff;
+}
+
+.navbar .navbar-nav .nav-link{
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 0;
+    text-transform: uppercase;
+    transition: all-ease-in 0.4s;
+    color: white;
+}
+
+.navbar .navbar-nav .nav-link:hover{
+    background: transparent;
+    color: white;
+}
+
+.navbar .navbar-nav .nav-link:after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: transparent;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .navbar-nav .nav-link:hover::after{
+    width: 100%;
+    background: orange;
+    color: #ffffff;
+}
+
+.main .main-content{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    min-height: 795px;
+    width: 100%;
+}
+
+.list-group-item{
+    background: white;
+    box-sizing: border-box;
+    border-width: 3px;
+    border-style: solid;
+    border-color: orange;
+    text-align: left;
+}
+
+#contact{
+    background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}

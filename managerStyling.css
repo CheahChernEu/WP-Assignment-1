@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* TYPOGRAPHY */
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 300;
+}
+
+h1{
+    font-size: 40px;
+    font-weight: 200;
+    line-height: 50px;
+}
+
+h2{
+    font-size: 30px;
+    line-height: 40px;
+    margin-top: 0;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 32px;
+}
+
+h4{
+    color: #505050;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+p{
+    color: #757575;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 29px;
+    letter-spacing: 0.5px;
+}
+
+/*MENU*/
+.navbar .navbar-brand{
+    font-weight: normal;
+    font-size: 25px;
+    color: white;
+}
+
+.navbar .navbar-brand:hover{
+    background: transparent;
+    color: #fff;
+}
+
+.navbar .navbar-nav .nav-link{
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 0;
+    text-transform: uppercase;
+    transition: all-ease-in 0.4s;
+    color: white;
+}
+
+.navbar .navbar-nav .nav-link:hover{
+    background: transparent;
+    color: white;
+}
+
+.navbar .navbar-nav .nav-link:after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: transparent;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .navbar-nav .nav-link:hover::after{
+    width: 100%;
+    background: orange;
+    color: #ffffff;
+}
+
+/*BUTTONS*/
+
+/*GENERAL*/
+#aboutus, #picture, #staff{
+    background: white;
+}
+
+.bg{
+    background: transparent;
+    transition: 0.2s ease;
+}
+
+.bg.scrolled{
+    background: black;
+}
+
+/*HOME*/
+#home{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+#home video{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    object-fit: cover;
+    box-sizing: border-box;
+    overflow: hidden;
+    z-index: -100;
+    transition: 1s opacity;
+}
+
+#home .overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+}
+
+#home h1{
+    color: #fff;
+    font-size: 7vw;
+    line-height: 1.2em;
+    font-family: 'Nosifer',sans-serif;
+}
+
+#home p{
+    color: rgba(250,250,250,0.7);
+}
+
+#home .home-text{
+    z-index: 99;
+}
+
+/*ABOUTUS*/
+#aboutus{
+    position: relative;
+}
+
+#aboutus h1{
+    font-size:20px;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    font-family: 'Emilys Candy',sans-serif;
+    font-weight: bold;
+    color: orange;
+}
+
+#aboutus h2{
+    font-family: 'Emilys Candy',sans-serif;
+}
+
+/*PICTURE*/
+
+#picture .picture-item{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#picture .picture-item .picture-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: all ease-in-out 0.4s;
+}
+
+#picture .picture-item:hover .picture-overlay{
+    opacity: 1;
+}
+
+#picture .picture-item .picture-overlay .picture-info{
+    padding: 7em 0;
+}
+
+.picture-info h1{
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+}
+.picture-info h3{
+    font-size: 12px;
+    color: #fff;
+    margin-top: 0;
+    letter-spacing: 0.2px;
+}
+
+.picture-item img{
+    transition: all ease-in-out 0.4s;
+}
+
+.picture-item:hover img{
+    transform: scale(1.1);
+}
+
+/*STAFF*/
+#staff{
+    position: relative;
+}
+
+#staff h1{
+    font-size: 20px;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    font-family: 'Emilys Candy',sans-serif;
+    font-weight: bold;
+    color: orange;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.swiper-slide .text h3{
+    font-weight: 200;
+}
+
+.swiper-slide .text h3 span{
+    font-weight: 500;
+}
+
+
+
+
+/* modal for record new staff */
+#btnRecord{
+  font-size: 26px;
+  color: purple;
+  border-color: black;
+  border-width: thick;
+  margin-left: 40px;
+  background-color: white;
+}
+
+#btnRecord:hover{
+  color: black;
+  background-color: pink;
+  border-color: red;
+}
+
+#recordModal{
+  border-radius: 20px;
+}
+
+#recordModalLabel{
+  font-size: 35px;
+  font-weight: bold;
+  color: black;
+}
+#recordModal input{
+  border-color: purple;
+}
+
+#recordModal button{
+  color: purple;
+  border-color: red;
+  background-color: white;
+}
+
+#recordModal button:hover{
+  color: orange;
+  border-color: black;
+}
+
+/* modal for manage application */
+#btnManage{
+  font-size: 26px;
+  color: purple;
+  border-color: black;
+  border-width: thick;
+  margin-left: 40px;
+  background-color: white;
+}
+
+#manageModal {
+    max-width: 80%;
+    margin:auto;
+    align-items: center;
+    justify-content:center;
+
+}
+
+
+/*feature section */
+#features{
+    height:250px;
+    background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: black;
+
+}
+
+#features h2{
+  padding: 25px;
+  border-style:dotted ;
+  color:white;
+  background-color: black;
+
+}
+
+/* footer */
+#contact{
+    background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+
+}
+
+.modal-dialog {
+          min-width: 900px;
+}
