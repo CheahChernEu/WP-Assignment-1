@@ -20,6 +20,7 @@ h1{
     font-size: 40px;
     font-weight: 200;
     line-height: 50px;
+    padding: 20px 0 20px 0;
 }
 
 h2{
@@ -49,6 +50,9 @@ p{
 }
 
 /*MENU*/
+.navbar{
+    background: black;
+}
 .navbar .navbar-brand{
     font-weight: normal;
     font-size: 25px;
@@ -90,184 +94,76 @@ p{
     color: #ffffff;
 }
 
-/*BUTTONS*/
-
-/*GENERAL*/
-#aboutus, #picture, #staff{
-    background: white;
-}
-
-.bg{
-    background: transparent;
-    transition: 0.2s ease;
-}
-
-.bg.scrolled{
-    background: black;
-}
-
-/*HOME*/
-#home{
+.main{
     display: flex;
     align-items: center;
     height: 100vh;
     position: relative;
+    background: white;
 }
 
-#home video{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    height: auto;
-    width: auto;
-    transform: translateX(-50%) translateY(-50%);
-    background-size: cover;
-    object-fit: cover;
-    box-sizing: border-box;
-    overflow: hidden;
-    z-index: -100;
-    transition: 1s opacity;
-}
-
-#home .overlay{
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-}
-
-#home h1{
-    color: #fff;
+.main h1{
     font-size: 7vw;
     line-height: 1.2em;
     font-family: 'Nosifer',sans-serif;
 }
 
-#home p{
-    color: rgba(250,250,250,0.7);
-}
-
-#home .home-text{
-    z-index: 99;
-}
-
-/*ABOUTUS*/
-#aboutus{
-    position: relative;
-}
-
-#aboutus h1{
-    font-size:20px;
-    letter-spacing: 12px;
-    text-transform: uppercase;
-    font-family: 'Emilys Candy',sans-serif;
-    font-weight: bold;
-    color: orange;
-}
-
-#aboutus h2{
-    font-family: 'Emilys Candy',sans-serif;
-}
-
-/*PICTURE*/
-
-#picture .picture-item{
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 25px;
+.section-btn{
+    margin: 32px 0 0 0;
     padding: 0;
-    vertical-align: middle;
-    text-align: center;
 }
 
-#picture .picture-item .picture-overlay{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top:0;
-    left:0;
-    right:0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    opacity: 0;
-    transition: all ease-in-out 0.4s;
+.section-btn button{
+    color: #ffffff;
+    font-weight: normal;
+    line-height: 45px;
+    perspective: 1000px;
 }
 
-#picture .picture-item:hover .picture-overlay{
-    opacity: 1;
-}
-
-#picture .picture-item .picture-overlay .picture-info{
-    padding: 7em 0;
-}
-
-.picture-info h1{
+.section-btn button span{
+    position: relative;
+    display: inline-block;
     font-size: 18px;
-    color: #fff;
-    margin: 0;
-}
-.picture-info h3{
-    font-size: 12px;
-    color: #fff;
-    margin-top: 0;
-    letter-spacing: 0.2px;
-}
-
-.picture-item img{
-    transition: all ease-in-out 0.4s;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    padding: 2px 27px;
+    background: #4dc47d;
+    border-radius: 1px;
+    transition: transform 0.3s;
+    transform-origin: 50% 0;
+    transform-style: preserve-3d;
 }
 
-.picture-item:hover img{
-    transform: scale(1.1);
+.section-btn button span::before{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: white;
+    background: black;
+    border-radius: 1px;
+    padding: 2px 27px;
+    transition: background 0.3s;
+    transform: rotateX(-90deg);
+    content: attr(data-hover);
+    transform-origin: 50% 0;
 }
 
-/*STAFF*/
-#staff{
+.section-btn button:hover span,
+.section-btn button:focus span{
+    transform: rotateX(90deg) translateY(-22px);
+}
+
+#contact{
+    background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
+    background-size: cover;
+    background-position: center center;
     position: relative;
 }
-
-#staff h1{
-    font-size: 20px;
-    letter-spacing: 12px;
-    text-transform: uppercase;
-    font-family: 'Emilys Candy',sans-serif;
-    font-weight: bold;
-    color: orange;
+.modal-dialog {
+          min-width: 750px;
 }
-
-.swiper-container {
-    width: 100%;
-    height: 100%;
-  }
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    /* Center slide text vertically */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.swiper-slide .text h3{
-    font-weight: 200;
-}
-
-.swiper-slide .text h3 span{
-    font-weight: 500;
-}
-
-
-
 
 /* modal for organize trip */
 #btnOrganize{
@@ -335,43 +231,4 @@ p{
     align-items: center;
     justify-content:center;
 
-}
-
-
-/*feature section */
-#features{
-    height:300px;
-    background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-color: black;
-
-}
-
-#features h2{
-  padding: 25px;
-  border-style:dotted ;
-  color:white;
-  background-color: black;
-
-}
-
-/* footer */
-#contact{
-    background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-
-}
-
-/* adjust the modal width */
-.modal-dialog {
-        min-width: 750px;
-}
-#error {
-  font-size: 10px;
 }
