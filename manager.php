@@ -11,7 +11,7 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top bg">
                 <div class="container">
-                <a class="navbar-brand" href="manager.php">HELPBOMBA.ORG</a>
+                <a class="navbar-brand" href="manager.php">CRS.ORG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars text-light" aria-hidden="true"></i>
                 </button>
@@ -33,7 +33,7 @@
             <div class = "container">
                 <div class="row pt-5">
                     <div class="home-text col-mid-8 col-sm-12 mt-5">
-                        <h1>Welcome Back! HELP Bomba Manager</h1>
+                        <h1>Welcome Back! CRS Manager</h1>
                         <p>Start your day with your happy smile!</p>
                         <ul class="section-btn">
                           <button type="button" data-toggle="modal" data-target="#recordModal"><span data-hover="Record New Staff">Record New Staff Here!</span></button>
@@ -47,7 +47,7 @@
                 <div class="container" py-5>
                     <div class="row">
                         <div class="col-md-5 col-sm-6">
-                            <h2>HELP BOMBA Sdn. Bhd.</h2>
+                            <h2>CRS Sdn. Bhd.</h2>
                             <p>Wisma Help, Jalan Dungun, Bukit Damansara,<br>50490 Kuala Lumpur,<br>Wilayah Persekutuan Kuala Lumpur</p>
                         </div>
 
@@ -55,7 +55,7 @@
                             <div class="footer-info">
                                 <h2>Keep In Touch</h2>
                                 <p><a href="#">016-1234567</a></p>
-                                <p><a href="#">HELPBOMBA@gmail.com</a></p>
+                                <p><a href="#">CRS@gmail.com</a></p>
                                 <p><a href="#">Our Location</a></p>
                             </div>
                         </div>
@@ -63,13 +63,13 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="footer-info">
                                 <h2>About Us</h2>
-                                <p>HELP BOMBA is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</p>
+                                <p>CRS is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</p>
                             </div>
                         </div>
 
                         <div class="col-md-12 col-12 text-center">
                             <div class="copyright-text">
-                                <p>Copyright @ 2021 <a href="#">HELP BOMBA Organization</a></p>
+                                <p>Copyright @ 2021 <a href="#">CRS Organization</a></p>
                             </div>
                         </div>
                     </div>

@@ -44,7 +44,7 @@
 			<button class="btn" id="signIn">Sign In</button>
 		</div>
 		<div class="overlay-panel overlay-right">
-			<h1>Hello, Welcome to HELP Bomba</h1>
+			<h1>Hello, Welcome to CRS</h1>
 			<p> Enter your details and start journey with us</p>
 			<button class="btn" id="signUp">Sign Up</button>
 		</div>
