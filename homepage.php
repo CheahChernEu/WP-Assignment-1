@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CRS Homepage</title>
+        <title>HELP Bomba Homepage</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
@@ -13,7 +13,7 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top bg">
                 <div class="container">
-                <a class="navbar-brand" href="#">CRS.ORG</a>
+                <a class="navbar-brand" href="#">HELPBOMBA.ORG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars text-light" aria-hidden="true"></i>
                 </button>
@@ -62,7 +62,7 @@
                 <div class="row py-5 my-5">
                     <div class="aboutus-text text-center py-5 col-md-10 col-sm-12 mx-auto">
                         <h1 class="pb-3">About Us</h1>
-                        <h2>Crisis Relief Services (CRS) is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</h2>
+                        <h2>HELP BOMBA is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</h2>
                     </div>
                 </div>
             </div>
@@ -203,7 +203,7 @@
               <div class="container" py-5>
                   <div class="row">
                       <div class="col-md-5 col-sm-6">
-                          <h2>CRS Sdn. Bhd.</h2>
+                          <h2>HELP BOMBA Sdn. Bhd.</h2>
                           <p>Wisma Help, Jalan Dungun, Bukit Damansara,<br>50490 Kuala Lumpur,<br>Wilayah Persekutuan Kuala Lumpur</p>
                       </div>
 
@@ -211,7 +211,7 @@
                           <div class="footer-info">
                               <h2>Keep In Touch</h2>
                               <p><a href="#">016-1234567</a></p>
-                              <p><a href="#">crs@gmail.com</a></p>
+                              <p><a href="#">HELPBOMBA@gmail.com</a></p>
                               <p><a href="#">Our Location</a></p>
                           </div>
                       </div>
@@ -219,13 +219,13 @@
                       <div class="col-md-3 col-sm-12">
                           <div class="footer-info">
                               <h2>About Us</h2>
-                              <p>Crisis Relief Services (CRS) is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</p>
+                              <p>HELP BOMBA is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</p>
                           </div>
                       </div>
 
                       <div class="col-md-12 col-12 text-center">
                           <div class="copyright-text">
-                              <p>Copyright @ 2021 <a href="#">CRS Organization</a></p>
+                              <p>Copyright @ 2021 <a href="#">HELP BOMBA Organization</a></p>
                           </div>
                       </div>
                   </div>

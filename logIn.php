@@ -14,17 +14,9 @@
   <form action="signUp.php" method="post">
   	<h2>Sign Up Credentials</h2>
   	<input  type="email" id="signUpUsername" name="signUpUsername" onkeyup="checkSignUpEmail(); return false;" placeholder="Username" required>
-		<div id="errorName"></div>
+		<div id="errorName1"></div>
 	  <input type="password" id="signUpPw" name="signUpPw" minlength="8" onkeyup="checkPass(); return false;" placeholder="Password" required>
-		<div id="error"></div>
-
-		<input list="options" name="roleOptions" placeholder="Sign Up as" required>
-
-		<datalist id="options">
-				<option value="manager"></option>
-				<option value="staff"></option>
-				<option value="volunteer"></option>
-		</datalist>
+		<div id="error1"></div>
 
 		<button id="signUpBtn">Sign Up</button>
 </form>
@@ -32,14 +24,14 @@
 
 <!-- Sign In  -->
 <div class="form-container sign-in-container">
-	 <form action="signIn.php" method="post">
+	<form action="function.php" method="post">
 	<h2>Sign In Here</h2>
 	<input  type="email" id="username" name="username" onkeyup="checkSignInEmail(); return false;" placeholder="Username"  required>
-	<div id="errorName"></div>
+	<div id="errorName2"></div>
 	<input  type="password" id="password" name="password" placeholder="Password" onkeyup="checkPassword(); return false;" minlength="8" required>
-	<div id="error"></div>
-	<button id="signInBtn">Sign In</button>
-
+	<div id="error2"></div>
+	<input name="action" value="login" hidden>
+	<button id="signInBtn" name="login">Sign In</button>
 	</form>
 </div>
 
@@ -52,7 +44,7 @@
 			<button class="btn" id="signIn">Sign In</button>
 		</div>
 		<div class="overlay-panel overlay-right">
-			<h1>Hello, Welcome to CRS</h1>
+			<h1>Hello, Welcome to HELP Bomba</h1>
 			<p> Enter your details and start journey with us</p>
 			<button class="btn" id="signUp">Sign Up</button>
 		</div>
@@ -88,7 +80,7 @@
 	function checkPass()
 	{
 		var pass = document.getElementById('signUpPw');
-		var message = document.getElementById('error');
+		var message = document.getElementById('error1');
 		var goodColor = "#66cc66";
 		var badColor = "#ff6666";
 
@@ -98,6 +90,7 @@
 			message.style.color = goodColor;
 			message.innerHTML = "Good to proceed!"
 		}
+
 		else
 		{
 			pass.style.backgroundColor = badColor;
@@ -110,7 +103,7 @@
 	function checkPassword()
 	{
 		var pass = document.getElementById('password');
-		var message = document.getElementById('error');
+		var message = document.getElementById('error2');
 		var goodColor = "#66cc66";
 		var badColor = "#ff6666";
 
@@ -132,7 +125,7 @@
 	function checkSignInEmail()
 	{
 		var email = document.getElementById('username');
-		var message = document.getElementById('errorName');
+		var message = document.getElementById('errorName2');
 		var goodColor = "#66cc66";
 		var badColor = "#ff6666";
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -156,7 +149,7 @@
 function checkSignUpEmail()
 {
 	var email = document.getElementById('signUpUsername');
-	var message = document.getElementById('errorName');
+	var message = document.getElementById('errorName1');
 	var goodColor = "#66cc66";
 	var badColor = "#ff6666";
 	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -174,8 +167,6 @@ function checkSignUpEmail()
 		message.innerHTML = " Please enter valid email address!"
 	}
 }
-
-
 
 
 
