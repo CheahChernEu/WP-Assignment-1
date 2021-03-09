@@ -168,6 +168,7 @@ function checkSignUpEmail()
 	}
 }
 
+// user login fucntion
 function userLogin(){
 
 var username = document.getElementById('username').value.toLowerCase();
@@ -199,6 +200,7 @@ if (username != '' && password != ''){
 
 }
 
+// volunteer sign up
 function userRegister(){
 
 var username = document.getElementById('signUpUsername').value;
