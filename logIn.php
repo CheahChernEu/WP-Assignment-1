@@ -17,8 +17,7 @@
 		<div id="errorName1"></div>
 	  <input type="password" id="signUpPw" name="signUpPw" minlength="8" onkeyup="checkPass(); return false;" placeholder="Password" required>
 		<div id="error1"></div>
-
-		<button id="signUpBtn">Sign Up</button>
+		<button type="button" id="signUpBtn" name="signUpBtn" onclick = "userRegister();">SIGN UP</button>
 </form>
 </div>
 
@@ -31,8 +30,8 @@
 	<input  type="password" id="password" name="password" placeholder="Password" onkeyup="checkPassword(); return false;" minlength="8" required>
 	<div id="error2"></div>
 	<input name="action" value="login" hidden>
-	<button type="button" name="signInBtn" onclick = "userLogin();" > SIGN IN</button>
-	<!-- <input type="submit" id="signInBtn" name="login" value = "Sign In" onclick="userLogin();"> -->
+	<button type="button" name="signInBtn" onclick = "userLogin();" > SIGN IN
+	</button>
 	</form>
 </div>
 
@@ -198,6 +197,21 @@ if (username != '' && password != ''){
 	throw new Error("This is not an error. This is just to abort javascript.")
 }
 
+}
+
+function userRegister(){
+
+var username = document.getElementById('signUpUsername').value;
+var password = document.getElementById('signUpPw').value;
+
+
+if (username != '' && password != ''){
+			window.location = "homepage.php";
+}else{
+			alert("Please fill in both username and password")
+			document.getElementById('signUpUsername').focus();
+			throw new Error("This is not an error. This is just to abort javascript.")
+		}
 }
 
 </script>
