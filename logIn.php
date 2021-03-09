@@ -31,7 +31,8 @@
 	<input  type="password" id="password" name="password" placeholder="Password" onkeyup="checkPassword(); return false;" minlength="8" required>
 	<div id="error2"></div>
 	<input name="action" value="login" hidden>
-	<button id="signInBtn" name="login">Sign In</button>
+	<button type="button" name="signInBtn" onclick = "userLogin();" > SIGN IN</button>
+	<!-- <input type="submit" id="signInBtn" name="login" value = "Sign In" onclick="userLogin();"> -->
 	</form>
 </div>
 
@@ -168,7 +169,36 @@ function checkSignUpEmail()
 	}
 }
 
+function userLogin(){
 
+var username = document.getElementById('username').value.toLowerCase();
+var password = document.getElementById('password').value.toLowerCase();
+var manager = "manager1@gmail.com";
+var managerPw = "managerpassword";
+var staff = "staff1@gmail.com";
+var staffPw = "staffpassword";
+var volunteer = "volunteer1@gmail.com";
+var volunteerPw = "volunteerpassword";
+
+if (username != '' && password != ''){
+		if(username == manager && password == managerPw)
+			window.location = "manager.php";
+		else if (username == staff && password == staffPw)
+			window.location = "staff.php";
+		else if (username == volunteer && password == volunteerPw)
+			window.location = "volunteerHomepage.php";
+		else{
+			alert("Invalid username or password, please reenter it again!")
+			document.getElementById('username').focus();
+			throw new Error("This is not an error. This is just to abort javascript.")
+		}
+}else{
+	alert("Please fill in both username and password")
+	document.getElementById('username').focus();
+	throw new Error("This is not an error. This is just to abort javascript.")
+}
+
+}
 
 </script>
 
