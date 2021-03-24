@@ -118,8 +118,8 @@
               </form>
             </div>
             <div class="modal-footer">
+              <input name="submit" id="submit" type="button" class="btn btn-primary" value="Submit"  onclick="usernameBlankValidation(),passwordBlankValidation(),nameBlankValidation(),phoneNoBlankValidation(),positionBlankValidation(),dateBlankValidation(),phoneNumValidation(),positionValidation(),evalDate(), checkEmail();">
 
-              <button name="submit" id="submit" type="button" class="btn btn-primary" value="Submit"  onsubmit="usernameBlankValidation(),passwordBlankValidation(),nameBlankValidation(),phoneNoBlankValidation(),positionBlankValidation(),dateBlankValidation(),phoneNumValidation(),positionValidation(),evalDate(), checkEmail()">Submit</button>
 
               <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
