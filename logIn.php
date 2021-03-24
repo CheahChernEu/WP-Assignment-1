@@ -208,6 +208,7 @@ var password = document.getElementById('signUpPw').value;
 
 
 if (username != '' && password != ''){
+			alert("Sign Up successfully")
 			window.location = "homepage.php";
 }else{
 			alert("Please fill in both username and password")
