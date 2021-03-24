@@ -40,7 +40,7 @@
 
         <section id = "home">
             <video controls="" autoplay="" muted="" loop="">
-                <source src="naturaldisastervideo.mov" type="video/mp4">
+                <source src="naturaldisastervideo.mp4" type="video/mp4">
             </video>
 
             <div class = "container">
