@@ -1,7 +1,16 @@
+<!--
+Student Name: CHEAH CHERN EU
+Student ID: B1801196
+-->
+
+<?php
+	require_once("function.php");
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>manager</title>
+        <title>Manager Homepage</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
@@ -15,8 +24,26 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars text-light" aria-hidden="true"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto float-right text-right">
+                    <li class="nav-item ml-4">
+
+                      <!-- User profile icon !-->
+                       <div class="dropdown" style="width:auto;height:auto;">
+                        <button type="button" class="navbar-brand btn btn-dark dropdown-toggle" data-toggle="dropdown"
+                        <i onclick="dropdown(this)" style="width:100px; height:auto; font-size:15px; color:white;"> Profile </i>
+                         </button>
+
+                         <!-- Dropdown options !-->
+                        <div class="dropdown-menu">
+													<a class="dropdown-item" href="#"> ID: <?php echo $_SESSION["userID"]; ?> </a>
+                          <a class="dropdown-item" href="#"> Username: <?php echo $_SESSION["username"]; ?> </a>
+                          <a class="dropdown-item" href="#"> Name: <?php echo $_SESSION["name"]; ?> </a>
+                          <a class="dropdown-item" href="#"> Position: <?php echo $_SESSION["position"]; ?> </a>
+                        </div>
+                      </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link ml-5" data-toggle="modal" data-target="#recordModal">Record New Staff </a>
                     </li>
@@ -32,7 +59,7 @@
             <div class = "container">
                 <div class="row pt-5">
                     <div class="home-text col-mid-8 col-sm-12 mt-5">
-                        <h1>Welcome Back! CRS Manager</h1>
+                        <h1>Welcome Back!  <?php echo $_SESSION["name"]; ?></h1>
                         <p>Start your day with your happy smile!</p>
                         <ul class="section-btn">
                           <button type="button" data-toggle="modal" data-target="#recordModal"><span data-hover="Record New Staff">Record New Staff Here!</span></button>
@@ -62,21 +89,21 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="footer-info">
                                 <h2>About Us</h2>
-                                <p>Crisis Relief Services (CRS) is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</p>
+                                <p>CRS is an NGO (Non-Government Organization) that aims to help people who are facing crises arising from natural disasters such as flood and earthquakes.</p>
                             </div>
                         </div>
-
                         <div class="col-md-12 col-12 text-center">
                             <div class="copyright-text">
                                 <p>Copyright @ 2021 <a href="#">CRS Organization</a></p>
                             </div>
-                        </div>
+                      </div>
                     </div>
                 </div>
             </footer>
         </section>
 
         <!-- Pop Up Modal for record new staff -->
+    <form name="staffForm" id="staffForm" action="function.php" method="POST">
         <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
         <div class="modal-dialog " role="document" >
           <div class="modal-content">
@@ -87,46 +114,42 @@
               </button>
             </div>
             <div class="modal-body">
-              <form name="staffForm" id="staffForm" action="registerStaff.php" method="POST">
+
                 <div class="form-group">
                   <label for="email" class="col-form-label">Username: @eg:123test@gmail.com</label>
-                  <input type="email" class="form-control" id="username" name="username" onkeyup="checkEmail(); return false;" placeholder="username" required>
+                  <input type="email" class="form-control" id="username" name="usernameStaff" onkeyup="checkEmail(); return false;" placeholder="username" required>
                   <div id="errorName"></div>
                 </div>
                 <div class="form-group">
                   <label for="password" class="col-form-label">Password:</label>
-                  <input type="password" id="password" name="password" class="form-control" onkeyup="checkPass(); return false;"  minlength="8" placeholder="password" required>
+                  <input type="password" id="password" name="passwordStaff" class="form-control" onkeyup="checkPass(); return false;"  minlength="8" placeholder="password" required>
                   <div id="error"></div>
                 </div>
                 <div class="form-group">
                   <label for="name" class="col-form-label">Name:</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                  <input type="text" class="form-control" id="name" name="nameStaff" placeholder="name" required>
                 </div>
                 <div class="form-group">
                   <label for="phoneNo" class="col-form-label">Phone Number: @eg:0186657886</label>
-                  <input type="tel" class="form-control" id="phoneNo" name="phoneNo" onkeyup="checkphoneNo(); return false;" placeholder="phone number" required>
+                  <input type="tel" class="form-control" id="phoneNo" name="phoneNoStaff" onkeyup="checkphoneNo(); return false;" placeholder="phone number" required>
                   <div id="errorNo"></div>
                 </div>
                 <div class="form-group">
-                  <label for="position" class="col-form-label">Position:</label>
-                  <input type="text" class="form-control" id="position" name="position" placeholder="position" required>
-                </div>
-                <div class="form-group">
                   <label for="dateJoined" class="col-form-label">Date-Joined:</label>
-                  <input type="date" class="form-control" id="dateJoined" name="dateJoined" placeholder="date-joined" required>
+                  <input type="date" class="form-control" id="dateJoined" name="dateJoinedStaff" placeholder="date-joined" required>
                 </div>
-              </form>
+
             </div>
             <div class="modal-footer">
-              <input name="submit" id="submit" type="button" class="btn btn-primary" value="Submit"  onclick="usernameBlankValidation(),passwordBlankValidation(),nameBlankValidation(),phoneNoBlankValidation(),positionBlankValidation(),dateBlankValidation(),phoneNumValidation(),positionValidation(),evalDate(), checkEmail();">
-
+              <input name="action" value="registerStaff" hidden>
+              <input name="submit" id="submit" type="submit" class="btn btn-primary" value="Submit"  onsubmit="usernameBlankValidation(),passwordBlankValidation(),nameBlankValidation(),phoneNoBlankValidation(),positionBlankValidation(),dateBlankValidation(),phoneNumValidation(),positionValidation(),evalDate(), checkEmail(),nameValidation()">
 
               <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
-
+    </form>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -163,18 +186,19 @@
           }
         }
 
+        function nameValidation(){
+            var letter = /^[a-z]*$/i;
+            if((!(document.getElementById('name').value).match(letter))){
+                alert("Please fill in input letters only in the Name section")
+                document.getElementById('name').focus();
+                throw new Error("This is not an error. This is just to abort javascript.")
+            }
+        }
+
         function phoneNoBlankValidation(){
           if(document.getElementById('phoneNo').value == ''){
             alert("Phone Number input cannot be blank")
             document.getElementById('phoneNo').focus();
-            throw new Error("This is not an error. This is just to abort javascript.")
-          }
-        }
-
-        function positionBlankValidation(){
-          if(document.getElementById('position').value == ''){
-            alert("Position input cannot be blank")
-            document.getElementById('position').focus();
             throw new Error("This is not an error. This is just to abort javascript.")
           }
         }
@@ -261,15 +285,6 @@
                 document.getElementById('phoneNo').focus();
                 throw new Error("This is not an error. This is just to abort javascript.")
             }
-        }
-
-
-        function positionValidation(){
-          var staff = 'staff'.toLowerCase();
-          if (!(document.getElementById('position').value.toLowerCase() === staff))
-          alert("Please just fill in position Staff only!")
-          document.getElementById('position').focus();
-          throw new Error("This is not an error. This is just to abort javascript.")
         }
 
         function validateDate(date)

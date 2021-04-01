@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SignIn Homepage</title>
+	<title>Login Homepage</title>
 	<link rel="stylesheet" type="text/css" href="loginStyling.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -17,7 +17,8 @@
 		<div id="errorName1"></div>
 	  <input type="password" id="signUpPw" name="signUpPw" minlength="8" onkeyup="checkPass(); return false;" placeholder="Password" required>
 		<div id="error1"></div>
-		<button type="button" id="signUpBtn" name="signUpBtn" onclick = "userRegister();">SIGN UP</button>
+
+		<button id="signUpBtn">Sign Up</button>
 </form>
 </div>
 
@@ -30,8 +31,7 @@
 	<input  type="password" id="password" name="password" placeholder="Password" onkeyup="checkPassword(); return false;" minlength="8" required>
 	<div id="error2"></div>
 	<input name="action" value="login" hidden>
-	<button type="button" name="signInBtn" onclick = "userLogin();" > SIGN IN
-	</button>
+	<button id="signInBtn" name="login">Sign In</button>
 	</form>
 </div>
 
@@ -45,7 +45,7 @@
 		</div>
 		<div class="overlay-panel overlay-right">
 			<h1>Hello, Welcome to CRS</h1>
-			<p> Enter your details and start journey with us</p>
+			<p> Want to be part of us? START YOUR VOLUNTEER JOURNEY WITH US </p>
 			<button class="btn" id="signUp">Sign Up</button>
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 
 <footer class="text-center text-white" style="background-color: black; ">
  <p class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.7); font-size:18px; padding:auto;">
-		© 2021 Copyright: Crisis Relief Services Organization
+		© 2021 Copyright: CRS Organization
 	</p>
 </footer>
 
@@ -168,54 +168,7 @@ function checkSignUpEmail()
 	}
 }
 
-// user login fucntion
-function userLogin(){
 
-var username = document.getElementById('username').value.toLowerCase();
-var password = document.getElementById('password').value.toLowerCase();
-var manager = "manager1@gmail.com";
-var managerPw = "managerpassword";
-var staff = "staff1@gmail.com";
-var staffPw = "staffpassword";
-var volunteer = "volunteer1@gmail.com";
-var volunteerPw = "volunteerpassword";
-
-if (username != '' && password != ''){
-		if(username == manager && password == managerPw)
-			window.location = "manager.php";
-		else if (username == staff && password == staffPw)
-			window.location = "staff.php";
-		else if (username == volunteer && password == volunteerPw)
-			window.location = "volunteerHomepage.php";
-		else{
-			alert("Invalid username or password, please reenter it again!")
-			document.getElementById('username').focus();
-			throw new Error("This is not an error. This is just to abort javascript.")
-		}
-}else{
-	alert("Please fill in both username and password")
-	document.getElementById('username').focus();
-	throw new Error("This is not an error. This is just to abort javascript.")
-}
-
-}
-
-// volunteer sign up
-function userRegister(){
-
-var username = document.getElementById('signUpUsername').value;
-var password = document.getElementById('signUpPw').value;
-
-
-if (username != '' && password != ''){
-			alert("Sign Up successfully")
-			window.location = "homepage.php";
-}else{
-			alert("Please fill in both username and password")
-			document.getElementById('signUpUsername').focus();
-			throw new Error("This is not an error. This is just to abort javascript.")
-		}
-}
 
 </script>
 

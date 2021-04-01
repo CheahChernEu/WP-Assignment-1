@@ -1,3 +1,7 @@
+<!--
+Student Name: CHEAH CHERN EU
+Student ID: B1801196
+-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -69,7 +73,7 @@
         </section>
 
         <section id="picture" class="pb-5">
-            <div class="container">
+            <div class="container mt-5">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="picture-item">
@@ -91,7 +95,7 @@
                                 <img src="image2.jpg" alt="Image1" class="img-fluid">
                                 <div class="picture-overlay">
                                   <div class="picture-info">
-                                    <h1>"Only a life lived for others is worth living</h1>
+                                    <h1>"Only a life lived for others is worth living"</h1>
                                     <h3> Click to pop!</h3>
                                   </div>
                                 </div>
@@ -211,7 +215,7 @@
                           <div class="footer-info">
                               <h2>Keep In Touch</h2>
                               <p><a href="#">016-1234567</a></p>
-                              <p><a href="#">CRS@gmail.com</a></p>
+                              <p><a href="#">crs@gmail.com</a></p>
                               <p><a href="#">Our Location</a></p>
                           </div>
                       </div>

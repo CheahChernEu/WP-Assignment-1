@@ -95,9 +95,11 @@ p{
 }
 
 .main{
+    margin-top:1vh;
+    margin-bottom:5vh;
     display: flex;
     align-items: center;
-    height: 100vh;
+    height: 105vh;
     position: relative;
     background: white;
 }
@@ -155,80 +157,10 @@ p{
     transform: rotateX(90deg) translateY(-22px);
 }
 
+/* footer */
 #contact{
     background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     position: relative;
-}
-.modal-dialog {
-          min-width: 750px;
-}
-
-/* modal for organize trip */
-#btnOrganize{
-  font-size: 26px;
-  color: purple;
-  border-color: black;
-  border-width: thick;
-  margin-left: 40px;
-  background-color: white;
-}
-
-#btnOrganize:hover{
-  color: black;
-  background-color: pink;
-  border-color: red;
-}
-
-#organizeModal{
-  border-radius: 20px;
-}
-
-#organizeModalLabel{
-  font-size: 35px;
-  font-weight: bold;
-  color: black;
-}
-#organizeModal input{
-  border-color: purple;
-}
-
-#organizeModal textarea{
-  border-color: purple;
-}
-
-#organizeModal button{
-  color: purple;
-  border-color: red;
-  background-color: white;
-}
-
-#organizeModal button:hover{
-  color: orange;
-  border-color: black;
-}
-
-/* modal for manage application */
-#btnManage{
-  font-size: 26px;
-  color: purple;
-  border-color: black;
-  border-width: thick;
-  margin-left: 40px;
-  background-color: white;
-}
-
-#btnManage:hover{
-  color: black;
-  background-color: pink;
-  border-color: red;
-}
-
-#manageModal {
-    max-width: 80%;
-    margin:auto;
-    align-items: center;
-    justify-content:center;
-
 }
