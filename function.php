@@ -50,7 +50,7 @@ function db_search($sql){
   $servername = "localhost";
   $username   = "root";
   $password   = "";
-  $dbname     = "helpbomba";
+  $dbname     = "crs";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -70,7 +70,7 @@ function db_result($sql){
   $servername = "localhost";
   $username   = "root";
   $password   = "";
-  $dbname     = "helpbomba";
+  $dbname     = "crs";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -91,7 +91,7 @@ function db_insert($sql){
   $servername = "127.0.0.1";
   $username   = "root";
   $password   = "";
-  $dbname     = "helpbomba";
+  $dbname     = "crs";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -151,7 +151,7 @@ function manageVolunteerProfile(){
   $servername = "localhost";
   $username   = "root";
   $password   = "";
-  $dbname     = "helpbomba";
+  $dbname     = "crs";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -278,7 +278,7 @@ function manageVolunteerProfile(){
 }
 
 function registerStaff(){
-  $conn = mysqli_connect("localhost","root","","helpbomba");
+  $conn = mysqli_connect("localhost","root","","crs");
   $username = $_POST['usernameStaff'];
   $password = $_POST['passwordStaff'];
   $name = $_POST['nameStaff'];
@@ -304,7 +304,7 @@ function registerStaff(){
 }
 
 function createTrip(){
-  $conn = mysqli_connect("localhost","root","","helpbomba");
+  $conn = mysqli_connect("localhost","root","","crs");
   $tripDate = $_POST['tripDate'];
   $location = $_POST['location'];
   $description = $_POST['description'];
@@ -341,7 +341,7 @@ function updateApp(){
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "helpbomba";
+  $dbname = "crs";
 
   // Create connection
   $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -400,7 +400,7 @@ function manageApp(){
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "helpbomba";
+  $dbname = "crs";
 
   // Create connection
   $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -448,7 +448,7 @@ function viewDoc(){
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "helpbomba";
+  $dbname = "crs";
 
   // Create connection
   $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -472,7 +472,7 @@ function applyForTrip(){
   $servername = "localhost";
   $username   = "root";
   $password   = "";
-  $dbname     = "helpbomba";
+  $dbname     = "crs";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -516,7 +516,7 @@ function applyForTrip(){
 }
 
 function selectTrip(){
-  $conn = mysqli_connect("localhost","root","","helpbomba");
+  $conn = mysqli_connect("localhost","root","","crs");
   $userid =  $_SESSION['userID'];
   $query = "SELECT * FROM crisistrip c inner join hbmember m WHERE c.userID_fk = $userid and m.userID = $userid and c.availableSlots>0 and c.cTDate>=CURDATE()";
   return $query;

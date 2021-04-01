@@ -73,7 +73,7 @@ Student ID: B1801196
                     <div class="home-text col-md-8 col-sm-12 mt-5 mb-1">
                       <?php
                       //connect to mysql
-                        $conn = new mysqli("localhost","root","", "helpbomba");
+                        $conn = new mysqli("localhost","root","", "crs");
                         if ($conn->connect_error){
                           die("Connection failure: " . mysqli_connect_error());
                         }

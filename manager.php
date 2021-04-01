@@ -143,7 +143,6 @@ Student ID: B1801196
             <div class="modal-footer">
               <input name="action" value="registerStaff" hidden>
               <input name="submit" id="submit" type="submit" class="btn btn-primary" value="Submit"  onsubmit="usernameBlankValidation(),passwordBlankValidation(),nameBlankValidation(),phoneNoBlankValidation(),positionBlankValidation(),dateBlankValidation(),phoneNumValidation(),positionValidation(),evalDate(), checkEmail(),nameValidation()">
-
               <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
