@@ -155,16 +155,19 @@ p{
     transform: rotateX(90deg) translateY(-22px);
 }
 
+/* footer */
 #contact{
     background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
     background-size: cover;
     background-position: center center;
     position: relative;
 }
+/* The modal dialog width is set */
 .modal-dialog {
           min-width: 900px;
 }
 
+/* CSS inisde the record new staff modal */
 #btnRecord{
   font-size: 26px;
   color: purple;

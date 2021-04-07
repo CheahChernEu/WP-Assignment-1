@@ -7,7 +7,7 @@ Student ID: B1801196
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "helpbomba";
+  $dbname = "crs";
 
   // Create connection
   $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -39,13 +39,13 @@ Student ID: B1801196
                   <ul class="navbar-nav ml-auto float-right text-right">
                     <li class="nav-item ml-4">
 
-                      <!-- User profile icon !-->
+                      <!-- User profile  !-->
                        <div class="dropdown" style="width:auto;height:auto;">
                         <button type="button" class="navbar-brand btn btn-dark dropdown-toggle" data-toggle="dropdown"
                         <i onclick="dropdown(this)" style="width:100px; height:auto; font-size:15px; color:white;"> Profile </i>
                          </button>
 
-                         <!-- Dropdown options !-->
+                         <!-- Dropdown profile info !-->
                         <div class="dropdown-menu">
 													<a class="dropdown-item" href="#"> ID: <?php echo $_SESSION["userID"]; ?> </a>
                           <a class="dropdown-item" href="#"> Username: <?php echo $_SESSION["username"]; ?> </a>
@@ -55,10 +55,11 @@ Student ID: B1801196
                       </div>
                     </li>
                     <li class="nav-item">
-
+												<!-- href for organize trip -->
                         <a class="nav-link ml-5" data-toggle="modal" data-target="#organizeModal">Organize Trip</a>
                     </li>
                     <li class="nav-item">
+											<!-- href for manage applications -->
                         <a class="nav-link ml-5" href="ManageApplications.php" >Manage Applications</a>
                     </li>
                     <li class="nav-item">
@@ -69,9 +70,9 @@ Student ID: B1801196
                 </div>
               </nav>
         </header>
-        <div class="main">
-            <div class = "container">
-                <div class="row pt-5">
+        <div class="main" >
+            <div class = "container" >
+                <div class="row pt-3">
                     <div class="home-text col-mid-8 col-sm-12 mt-5">
                         <h1>Welcome Back! <?php echo $_SESSION["name"]; ?> </h1>
                         <p>Together we achieve MORE</p>
@@ -82,6 +83,8 @@ Student ID: B1801196
                 </div>
             </div>
         </div>
+
+				<!-- footer -->
         <section id="contact">
             <footer class="py-5">
                 <div class="container" py-5>
@@ -118,7 +121,7 @@ Student ID: B1801196
         </section>
 
 
-<!-- organize trip -->
+	<!-- organize trip modal-->
   <form name="tripForm" id="tripForm" action="function.php" method="POST">
       <div class="modal fade" id="organizeModal" tabindex="-1" role="dialog" aria-labelledby="organizeModalLabel" aria-hidden="true">
         <div class="modal-dialog " role="document" >
@@ -144,6 +147,7 @@ Student ID: B1801196
                 </div>
                 <div class="form-group">
                   <label for="cType" class="col-form-label">Crisis Type:</label>
+									<!-- Trip selection dropdown -->
 										<select name="cType" id="cType" style="margin-top:10px; width:22%;height: 45px;">
 					    				<option value="Flood">Flood</option>
 					    				<option value="Tsunami">Tsunami</option>
@@ -168,8 +172,7 @@ Student ID: B1801196
             </div>
             <div class="modal-footer">
               <input name="action" value="createTrip" hidden>
-              <input name="submit" id="submit" type="submit" class="btn btn-primary" value="Submit"  onsubmit="tDateValidation(),locationBlankValidation(),descBlankValidation(),cTypeBlankValidation(),numVBlankValidation(), numVGreater1(),minDBlankValidation(),skillReqBlankValidation(),numDGreater1(),descriptionValidation(),locationValidation(),cTypeValidation()">
-
+              <input name="submit" id="submit" type="submit" class="btn btn-primary" value="Submit">
               <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
@@ -177,18 +180,16 @@ Student ID: B1801196
       </div>
     </form>
 
-
-
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!-- javascript -->
       <script type="text/javascript">
         // Only allow today as the min date can be pick, and dsiable past date to be pick from.
-      var date = new Date().toISOString().slice(0,10);
-      //To restrict past date
+      	var date = new Date().toISOString().slice(0,10);
+      	//To restrict past date
         $('#tripDate').attr('min', date);
-
+			// blank validation for each input sections
       function tDateValidation(){
         if(document.getElementById('tripDate').value == ''){
           alert("Trip Date input cannot be blank")
@@ -209,14 +210,6 @@ Student ID: B1801196
         if(document.getElementById('description').value == ''){
           alert("Description input cannot be blank")
           document.getElementById('description').focus();
-          throw new Error("This is not an error. This is just to abort javascript.")
-        }
-      }
-
-      function cTypeBlankValidation(){
-        if(document.getElementById('cType').value == ''){
-          alert("Crisis Trip input cannot be blank")
-          document.getElementById('cType').focus();
           throw new Error("This is not an error. This is just to abort javascript.")
         }
       }
@@ -245,7 +238,7 @@ Student ID: B1801196
         }
       }
 
-      // Check the amount to be greater than 1
+      // Check the amount of volunteer to be greater than 1
       function numVGreater1(){
         if(document.getElementById('numVolunteers').value < 1){
           alert("Number of volunteers required cannot be less than 1")
@@ -254,10 +247,11 @@ Student ID: B1801196
         }
       }
 
+			//Check the min duration to be greater than 1
       function numDGreater1(){
-        if(document.getElementById('numVolunteers').value < 1){
+        if(document.getElementById('minDuration').value < 1){
           alert("Minimum duration of the trip cannot be less than 1")
-          document.getElementById('numVolunteers').focus();
+          document.getElementById('minDuration').focus();
           throw new Error("This is not an error. This is just to abort javascript.")
         }
       }
@@ -272,6 +266,7 @@ Student ID: B1801196
           }
       }
 
+			// validate the characters only for location
       function locationValidation(){
           var letter = /^[a-z]*$/i;
           if((!(document.getElementById('location').value).match(letter))){
@@ -281,14 +276,8 @@ Student ID: B1801196
           }
       }
 
-      function cTypeValidation(){
-          var letter = /^[a-z]*$/i;
-          if((!(document.getElementById('cType').value).match(letter))){
-              alert("Please fill in input letters only in the Crisis Type section")
-              document.getElementById('cType').focus();
-              throw new Error("This is not an error. This is just to abort javascript.")
-          }
-      }
+
+			document.getElementById('submit').onsubmit = tDateValidation,locationBlankValidation,descBlankValidation,numVBlankValidation, numVGreater1,minDBlankValidation,skillReqBlankValidation,numDGreater1,descriptionValidation,locationValidation;
 
         </script>
     </body>

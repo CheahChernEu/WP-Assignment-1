@@ -21,20 +21,18 @@ Student ID: B1801196
                 <div class="container">
                 <a class="navbar-brand" href="homepage.php">CRS.ORG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars text-light" aria-hidden="true"></i>
+                <i class="fa fa-bars text-light" aria-hidden="true"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto float-right text-right">
 										<li class="nav-item ml-4">
-
-                      <!-- User profile icon !-->
+                      <!-- User profile !-->
                        <div class="dropdown" style="width:auto;height:auto;">
                         <button type="button" class="navbar-brand btn btn-dark dropdown-toggle" data-toggle="dropdown"
                         <i onclick="dropdown(this)" style="width:100px; height:auto; font-size:15px; color:white;"> Profile </i>
                          </button>
-
-                         <!-- Dropdown options !-->
+                         <!-- Dropdown profile info !-->
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="#"> ID: <?php echo $_SESSION["userID"]; ?> </a>
                           <a class="dropdown-item" href="#"> Username: <?php echo $_SESSION["username"]; ?> </a>
@@ -45,7 +43,6 @@ Student ID: B1801196
                     </li>
 
                     <li class="nav-item">
-
                         <a class="nav-link ml-5" href="staff.php">Organize Trip</a>
                     </li>
                     <li class="nav-item">
@@ -63,6 +60,7 @@ Student ID: B1801196
         <?php
         //connect to mysql
           $conn = new mysqli("localhost","root","", "crs");
+					// show error if connection failed
           if ($conn->connect_error){
             die("Connection failure: " . mysqli_connect_error());
           }
@@ -73,22 +71,22 @@ Student ID: B1801196
           $document = "use document";
           $conn->query($application);
           $conn->query($document);
+					// session from function.php
           $applicationID = $_SESSION["applicationID"];
+					// Select all where the documentID is same with the application documentID
           $sql = "SELECT * FROM document WHERE documentID = (SELECT documentID_fk FROM application WHERE applicationID = $applicationID)";
-
           $resultDoc = mysqli_query($conn, $sql);
-          // $_SESSION["documentID"] = $result;
 
-          //fetch the data from database
+          //fetch the data from document database
           $resultRes = mysqli_query($conn, $sql) or die("Document Database error existed:". mysqli_error($conn));
 
-          //if crisis trip table doesnt have data, display the message
+          //if document doesnt have data, display the message
           if (mysqli_num_rows($resultDoc) == 0 ) { ?>
             <h2>There are no document currently!</h2>
           <?php }
           else {
           ?>
-          <?php   // get each row of crisis trip into table
+          <?php   // get each row of document into table
             while($row = mysqli_fetch_assoc($resultRes)):
           ?>
                   <div class="container" id="form">
@@ -149,7 +147,6 @@ Student ID: B1801196
                     				<option value="ACCEPTED">ACCEPTED</option>
                     				<option value="REJECTED">REJECTED</option>
                   				</select>
-
                         </div>
                       </div>
                       <div class="row">
@@ -159,24 +156,24 @@ Student ID: B1801196
                         <div class="col-75">
                           <input type="text"
                           class="form-control" name="remarks" id="remarks" placeholder="remarks on documents" required>
-                      </div>
-
+                      	</div>
                       <div class="row" id="btn" >
                         <a href="Application.php"><button type="button" id="Back" value="Back">Back</button></a>
-
+												<!-- call function in the function.php -->
                           <input name = "action" value="updateApp" hidden>
                           <button type="submit" id="Submit" value="Update" name="Update"  onclick="checkStatus(), remarksBlankValidation();">Update</button>
                        </datalist>
                       </div>
-                      </fieldset>
-                    </form>
-                  </div>
-          <?php endwhile;?>
-          <?php } ?>
+                    </fieldset>
+                  </form>
+                </div>
+          		<?php endwhile;?>
+          	<?php } ?>
 
+				<!-- footer -->
         <section id="contact">
         <footer class="py-5">
-            <div class="container"  py-5>
+            <div class="container" py-5>
                 <div class="row">
                     <div class="col-md-5 col-sm-6">
                         <h2>CRS Sdn. Bhd.</h2>
@@ -206,7 +203,7 @@ Student ID: B1801196
                     </div>
                 </div>
             </div>
-        </footer>
+        	</footer>
         </section>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -214,9 +211,8 @@ Student ID: B1801196
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
         <script>
-            /*function for validating the blank fields because submit button type is not submit so the required is not working*/
+						// check the status's characters match or not
             function checkStatus(){
-
               var result = document.getElementById('statusUpdate').value.toUpperCase();
               var reject = "REJECTED";
               var accept = "ACCEPTED";
@@ -227,6 +223,7 @@ Student ID: B1801196
               }
             }
 
+						// remarks input blank validation
     				function remarksBlankValidation(){
     	        if(document.getElementById('remarks').value == ''){
     	          alert("Remark(s) cannot be blank!")
@@ -234,7 +231,6 @@ Student ID: B1801196
     	          throw new Error("This is not an error. This is just to abort javascript.")
     	        }
     	      }
-
 
         </script>
     </body>

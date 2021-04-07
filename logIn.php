@@ -17,7 +17,6 @@
 		<div id="errorName1"></div>
 	  <input type="password" id="signUpPw" name="signUpPw" minlength="8" onkeyup="checkPass(); return false;" placeholder="Password" required>
 		<div id="error1"></div>
-
 		<button id="signUpBtn">Sign Up</button>
 </form>
 </div>
@@ -54,7 +53,7 @@
 </div>
 
 <footer class="text-center text-white" style="background-color: black; ">
- <p class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.7); font-size:18px; padding:auto;">
+ 	<p class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.7); font-size:18px; padding:auto;">
 		© 2021 Copyright: CRS Organization
 	</p>
 </footer>

@@ -22,20 +22,20 @@ Student ID: B1801196
                 <div class="container">
                 <a class="navbar-brand" href="staff.php">CRS.ORG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars text-light" aria-hidden="true"></i>
+                  <i class="fa fa-bars text-light" aria-hidden="true"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto float-right text-right">
                     <li class="nav-item ml-4">
 
-                      <!-- User profile icon !-->
+                      <!-- User profile !-->
                        <div class="dropdown" style="width:auto;height:auto;">
                         <button type="button" class="navbar-brand btn btn-dark dropdown-toggle" data-toggle="dropdown"
                         <i onclick="dropdown(this)" style="width:100px; height:auto; font-size:15px; color:white;"> Profile </i>
                          </button>
 
-                         <!-- Dropdown options !-->
+                         <!-- Dropdown profile info !-->
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="#"> ID: <?php echo $_SESSION["userID"]; ?> </a>
                           <a class="dropdown-item" href="#"> Username: <?php echo $_SESSION["username"]; ?> </a>
@@ -46,10 +46,11 @@ Student ID: B1801196
                     </li>
 
                     <li class="nav-item">
-
+											<!-- href for organize trip -->
                         <a class="nav-link ml-5" href="staff.php">Organize Trip</a>
                     </li>
                     <li class="nav-item">
+											<!-- href for manage applications -->
                         <a class="nav-link ml-5" href="ManageApplications.php" >Manage Applications</a>
                     </li>
                     <li class="nav-item">
@@ -65,7 +66,6 @@ Student ID: B1801196
 
         <div class="main">
             <div class = "container" style="overflow-x:auto;">
-
                 <div class="row pt-5" table-wrapper-scroll-y my-custom-scrollbar>
                     <div class="home-text col-md-12 col-sm-12 mt-5">
                       <?php
@@ -74,29 +74,29 @@ Student ID: B1801196
                         if ($conn->connect_error){
                           die("Connection failure: " . mysqli_connect_error());
                         }
-
                         // use table
                         $application = "use application";
 												$crisisTrip = "use crisistrip";
                         $conn->query($application);
 												$conn->query($crisisTrip);
+												// Getting the ctid from the function.php
 												$tripid = $_SESSION['cTID'];
+												//select all based on the ctid
 												$sql = "SELECT * FROM application inner join crisistrip WHERE application.cTID_fk = $tripid and crisistrip.cTID = $tripid";
 
                         $result = mysqli_query($conn, $sql);
-
-                        //fetch the data from database
+                        //fetch the data from crs database
                         $resultArray = mysqli_query($conn, $sql) or die("Database error existed:". mysqli_error($conn));
-                        //if crisis trip table doesnt have data, display the message
+                        //if application table doesnt have data, display the message
                         if (mysqli_num_rows($result) == 0 ) { ?>
                           <h2>There are no application currently!</h2>
                         <?php }
                         else {
                         ?>
-                        <!-- if have crisis trip -->
+                        <!-- if have application -->
                         <h3 style="font-family: 'Gugi'; font-size:30px;">Lists of Application Table</h3>
 
-                        <!-- All crisis trip that staff in-charge !-->
+                        <!-- All application that come with the crisis trip !-->
 
                         <table id="table-row" class="table table-bordered table-secondary table table-dark col-md-12 col-sm-5 mt-5 " id="cTripTable" style="margin:auto;">
 													 <form action="function.php" method="POST" class="form-control">
@@ -112,52 +112,39 @@ Student ID: B1801196
                             </thead>
                             <tbody>
 															<?php
-                              // get each row of crisis trip into table
-                              while($row = mysqli_fetch_assoc($resultArray)):
+                              // get each row of application into from application table
+															while($row = mysqli_fetch_assoc($resultArray)):
                               ?>
                               <tr>
 																<form class="" action="" method="post">
-                                <td align="middle">
-
-                                <!-- to select trip that need to delete !-->
-																<input type="checkbox" id="checkboxApp<?php echo $row['applicationID'];?>" onchange="isChecked(this, 'viewDoc<?php echo $row['applicationID'];?>')" name="checkboxApp" value="<?php echo $row['applicationID'];?>" required>
-
-
-                                </td>
-                                <td align="center"><?php echo $row['applicationID'];?></td>
-                                <td align="center"><?php echo $row['applicationDate'];?></td>
-                                <td align="center"><?php echo $row['applicationStatus'];?></td>
-                                <td align="center"><?php echo $row['remarks'];?></td>
-                                <td align="middle">
-
-
-																	<input name="action" value="viewDoc" hidden>
-                                 <!-- to view document !-->
-                                <button type="submit" id="viewDoc<?php echo $row['applicationID'];?>" name="viewDoc" disabled class="btn btn-info">View Document</button>
-
-
-                                </td>
-
-																<script type="text/javascript">
-
-	                              function isChecked(checkbox, viewDoc) {
-	                                document.getElementById(viewDoc).disabled = !checkbox.checked;
-	                              }
-
-																</script>
+		                                <td align="middle">
+				                                <!-- to select application!-->
+																				<input type="checkbox" id="checkboxApp<?php echo $row['applicationID'];?>" onchange="isChecked(this, 'viewDoc<?php echo $row['applicationID'];?>')" name="checkboxApp" value="<?php echo $row['applicationID'];?>" required>
+		                                </td>
+		                                <td align="center"><?php echo $row['applicationID'];?></td>
+		                                <td align="center"><?php echo $row['applicationDate'];?></td>
+		                                <td align="center"><?php echo $row['applicationStatus'];?></td>
+		                                <td align="center"><?php echo $row['remarks'];?></td>
+		                                <td align="middle">
+																			<!-- call the fucntion from function.php -->
+																			<input name="action" value="viewDoc" hidden>
+		                                 	<!-- to view document !-->
+		                                	<button type="submit" id="viewDoc<?php echo $row['applicationID'];?>" name="viewDoc" disabled class="btn btn-info">View Document</button>
+		                                </td>
 																</form>
                               </tr>
-															</form>
-	                           <?php endwhile;?>
+														</form>
+	                         <?php endwhile;?>
                           </tbody>
                         </table>
-                        <?php } ?>
-                          <br>
+                      	<?php } ?>
+                      <br>
                     </div>
                 </div>
             </div>
         </div>
 
+				<!-- footer -->
         <section id="contact">
             <footer class="py-5">
                 <div class="container" py-5>
@@ -200,5 +187,12 @@ Student ID: B1801196
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+				<!-- to enable and disable the button with checkbox -->
+				<script type="text/javascript">
+						function isChecked(checkbox, viewDoc) {
+							document.getElementById(viewDoc).disabled = !checkbox.checked;
+						}
+				</script>
     </body>
 </html>

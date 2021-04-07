@@ -32,13 +32,13 @@ Student ID: B1801196
                   <ul class="navbar-nav ml-auto float-right text-right">
                     <li class="nav-item ml-4">
 
-                      <!-- User profile icon !-->
+                      <!-- User profile  !-->
                        <div class="dropdown" style="width:auto;height:auto;">
                         <button type="button" class="navbar-brand btn btn-dark dropdown-toggle" data-toggle="dropdown"
                         <i onclick="dropdown(this)" style="width:100px; height:auto; font-size:15px; color:white;"> Profile </i>
                          </button>
 
-                         <!-- Dropdown options !-->
+                         <!-- Dropdown profile info !-->
                         <div class="dropdown-menu">
 													<a class="dropdown-item" href="#"> ID: <?php echo $_SESSION["userID"]; ?> </a>
                           <a class="dropdown-item" href="#"> Username: <?php echo $_SESSION["username"]; ?> </a>
@@ -82,10 +82,11 @@ Student ID: B1801196
                         $crisisTrip = "use crisistrip";
                         $conn->query($crisisTrip);
 
-                        $sql =selectTrip();
+                        $sql = selectTrip();
+												// Query processing, and object return
                         $result = mysqli_query($conn, $sql);
 
-                        //fetch the data from database
+                        //fetch the data from crs database
                         $resultArray = mysqli_query($conn, $sql) or die("Database error existed:". mysqli_error($conn));
                         //if crisis trip table doesnt have data, display the message
                         if (mysqli_num_rows($result) == 0) { ?>
@@ -119,54 +120,49 @@ Student ID: B1801196
                             </thead>
                             <tbody>
                             <?php
-                            // get each row of crisis trip into table
+                            // get each row of related crisis trip from database table into webpage table
                             while($row = mysqli_fetch_assoc($resultArray)):
                             ?>
                             <tr>
-                              <form  class="" action="" method="post">
-                              <td align="middle">
-                              <!-- to select trip that need to delete !-->
-                              <input type="checkbox" name="checkbox" onchange="isChecked(this, 'viewApp<?php echo $row['cTID'];?>', 'delete<?php echo $row['cTID'];?>')" value="<?php echo $row['cTID'];?>" required>
-                              </td>
-                              <td align="center"><?php echo $row['cTID'];?></td>
-                              <td align="center"><?php echo $row['cTDate'];?></td>
-                              <td align="center"><?php echo $row['cType'];?></td>
-                              <td align="center"><?php echo $row['location'];?></td>
-                              <td align="center"><?php echo
-                              $row['skillRequirement(s)'];?></td>
-                              <td align="center"><?php echo $row['availableSlots'];?></td>
-                              <td align="middle">
+                            	<form  class="" action="" method="post">
+	                              <td align="middle">
+	                              <!-- to select trip !-->
+	                              <input type="checkbox" name="checkbox" onchange="isChecked(this, 'viewApp<?php echo $row['cTID'];?>', 'delete<?php echo $row['cTID'];?>')" value="<?php echo $row['cTID'];?>" required>
+	                              </td>
+	                              <td align="center"><?php echo $row['cTID'];?></td>
+	                              <td align="center"><?php echo $row['cTDate'];?></td>
+	                              <td align="center"><?php echo $row['cType'];?></td>
+	                              <td align="center"><?php echo $row['location'];?></td>
+	                              <td align="center"><?php echo
+	                              $row['skillRequirement(s)'];?></td>
+	                              <td align="center"><?php echo $row['availableSlots'];?></td>
+	                              <td align="middle">
+	                                <!-- to view applications !-->
+																	<input name="action" value="viewApp" hidden>
+	                                <a href="Application.php"><button type="submit" id="viewApp<?php echo $row['cTID'];?>" name="viewApp" disabled 	class="btn btn-info">View Application</button>
+																</a>
+	                              </td>
+	                              <td align="middle">
+																	<!-- call the function from function.php -->
+																	<input name="action" value="manageApp" hidden>
+	                                <!-- to delete trip if neccessarily !-->
+	                                <input type="submit" id="delete<?php echo $row['cTID'];?>" name="delete" value ="Delete" disabled class="btn btn-info" style="background:red;">
 
-
-                                <!-- to view applications !-->
-																<input name="action" value="viewApp" hidden>
-                                <a href="Application.php"><button type="submit" id="viewApp<?php echo $row['cTID'];?>" name="viewApp" disabled 	class="btn btn-info">View Application</button>
-															</a>
-                              </td>
-                              <td align="middle">
-																<input name="action" value="manageApp" hidden>
-                                <!-- to delete trip if neccessarily !-->
-                                <input type="submit" id="delete<?php echo $row['cTID'];?>" name="delete" value ="Delete" disabled class="btn btn-info" style="background:red;">
-
-                              </td>
-                        	</form>
-                        </tr>
-
-                           </form>
-                          <?php endwhile;?>
-                          </tbody>
-                        </table>
-
-                        <?php } ?>
-                          <br>
+	                             </td>
+                        		</form>
+                        	</tr>
+                      	</form>
+                      <?php endwhile;?>
+                      </tbody>
+                    	</table>
+											<?php } ?>
+                      <br>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
+				<!-- footer -->
         <section id="contact">
             <footer class="py-5">
                 <div class="container" py-5>
@@ -175,7 +171,6 @@ Student ID: B1801196
                             <h2>CRS Sdn. Bhd.</h2>
                             <p>Wisma Help, Jalan Dungun, Bukit Damansara,<br>50490 Kuala Lumpur,<br>Wilayah Persekutuan Kuala Lumpur</p>
                         </div>
-
                         <div class="col-md-4 col-sm-6">
                             <div class="footer-info">
                                 <h2>Keep In Touch</h2>
@@ -184,7 +179,6 @@ Student ID: B1801196
                                 <p><a href="#">Our Location</a></p>
                             </div>
                         </div>
-
                         <div class="col-md-3 col-sm-12">
                             <div class="footer-info">
                                 <h2>About Us</h2>
@@ -201,10 +195,6 @@ Student ID: B1801196
                 </div>
             </footer>
         </section>
-
-
-
-
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

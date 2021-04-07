@@ -172,8 +172,6 @@ label {
   transition: width 0.3s ease, background-color 0.6s ease;
 }
 
-
-
 #form #btn #Submit:hover::after {
   width: 100%;
   background: red ;
@@ -215,7 +213,7 @@ label {
   background: red ;
 }
 
-
+/* footer */
 #contact{
     background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;
     background-size: cover;

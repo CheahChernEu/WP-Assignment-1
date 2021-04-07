@@ -22,20 +22,20 @@ Student ID: B1801196
                 <div class="container">
                 <a class="navbar-brand" href="manager.php">CRS.ORG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars text-light" aria-hidden="true"></i>
+                <i class="fa fa-bars text-light" aria-hidden="true"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto float-right text-right">
                     <li class="nav-item ml-4">
 
-                      <!-- User profile icon !-->
+                      <!-- User profile !-->
                        <div class="dropdown" style="width:auto;height:auto;">
                         <button type="button" class="navbar-brand btn btn-dark dropdown-toggle" data-toggle="dropdown"
                         <i onclick="dropdown(this)" style="width:100px; height:auto; font-size:15px; color:white;"> Profile </i>
                          </button>
 
-                         <!-- Dropdown options !-->
+                         <!-- Dropdown profile info !-->
                         <div class="dropdown-menu">
 													<a class="dropdown-item" href="#"> ID: <?php echo $_SESSION["userID"]; ?> </a>
                           <a class="dropdown-item" href="#"> Username: <?php echo $_SESSION["username"]; ?> </a>
@@ -45,6 +45,7 @@ Student ID: B1801196
                       </div>
                     </li>
                     <li class="nav-item">
+											<!-- record staff form href -->
                         <a class="nav-link ml-5" data-toggle="modal" data-target="#recordModal">Record New Staff </a>
                     </li>
                     <li class="nav-item">
@@ -59,6 +60,7 @@ Student ID: B1801196
             <div class = "container">
                 <div class="row pt-5">
                     <div class="home-text col-mid-8 col-sm-12 mt-5">
+											<!-- Use SESSIon to store and display the name of the user when log in -->
                         <h1>Welcome Back!  <?php echo $_SESSION["name"]; ?></h1>
                         <p>Start your day with your happy smile!</p>
                         <ul class="section-btn">
@@ -68,6 +70,8 @@ Student ID: B1801196
                 </div>
             </div>
         </div>
+
+				<!-- footer -->
         <section id="contact">
             <footer class="py-5">
                 <div class="container" py-5>
@@ -102,7 +106,7 @@ Student ID: B1801196
             </footer>
         </section>
 
-        <!-- Pop Up Modal for record new staff -->
+      <!-- Pop Up Modal for record new staff -->
     <form name="staffForm" id="staffForm" action="function.php" method="POST">
         <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
         <div class="modal-dialog " role="document" >
@@ -112,7 +116,7 @@ Student ID: B1801196
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
+          	</div>
             <div class="modal-body">
 
                 <div class="form-group">
@@ -138,11 +142,10 @@ Student ID: B1801196
                   <label for="dateJoined" class="col-form-label">Date-Joined:</label>
                   <input type="date" class="form-control" id="dateJoined" name="dateJoinedStaff" placeholder="date-joined" required>
                 </div>
-
             </div>
             <div class="modal-footer">
               <input name="action" value="registerStaff" hidden>
-              <input name="submit" id="submit" type="submit" class="btn btn-primary" value="Submit"  onsubmit="usernameBlankValidation(),passwordBlankValidation(),nameBlankValidation(),phoneNoBlankValidation(),positionBlankValidation(),dateBlankValidation(),phoneNumValidation(),positionValidation(),evalDate(), checkEmail(),nameValidation()">
+              <input name="submit" id="submit" type="submit" class="btn btn-primary" value="Submit" >
               <button name="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
@@ -160,7 +163,7 @@ Student ID: B1801196
         //To restrict future date
           $('#dateJoined').attr('max', date);
 
-        // check the black field
+        // check the black field for each input sections
         function usernameBlankValidation(){
           if(document.getElementById('username').value == ''){
             alert("Username input cannot be blank")
@@ -185,15 +188,6 @@ Student ID: B1801196
           }
         }
 
-        function nameValidation(){
-            var letter = /^[a-z]*$/i;
-            if((!(document.getElementById('name').value).match(letter))){
-                alert("Please fill in input letters only in the Name section")
-                document.getElementById('name').focus();
-                throw new Error("This is not an error. This is just to abort javascript.")
-            }
-        }
-
         function phoneNoBlankValidation(){
           if(document.getElementById('phoneNo').value == ''){
             alert("Phone Number input cannot be blank")
@@ -210,7 +204,7 @@ Student ID: B1801196
           }
         }
 
-        // check the password input
+        // check the passwordLen input
         function checkPass()
         {
           var pass = document.getElementById('password');
@@ -232,7 +226,17 @@ Student ID: B1801196
           }
         }
 
-        // check the email input
+				// name validation on the characters
+				function nameValidation(){
+            var letter = /^[a-z]*$/i;
+            if((!(document.getElementById('name').value).match(letter))){
+                alert("Please fill in input letters only in the Name section")
+                document.getElementById('name').focus();
+                throw new Error("This is not an error. This is just to abort javascript.")
+            }
+        }
+
+        // check the email input in correct format
         function checkEmail()
         {
           var email = document.getElementById('username');
@@ -255,6 +259,7 @@ Student ID: B1801196
           }
       }
 
+			// check the phoneNo length
       function checkphoneNo()
       {
         var phoneNo = document.getElementById('phoneNo');
@@ -276,7 +281,7 @@ Student ID: B1801196
         }
       }
 
-
+			// phone number validation
         function phoneNumValidation(){
             var words = /^[a-z]*$+/-i;
             if(document.getElementById('phoneNo').value.match(words) ){
@@ -286,43 +291,7 @@ Student ID: B1801196
             }
         }
 
-        function validateDate(date)
-        {
-            // First check for the pattern
-            if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date))
-                return false;
-
-            // Parse the date parts to integers
-            var portions = date.split("/");
-            var day = parseInt(portions[0], 10);
-            var month = parseInt(portions[1], 10);
-            var year = parseInt(portions[2], 10);
-
-            // Check the ranges of month and year
-            if(year < 1000 || year > 3000 || month == 0 || month > 12)
-                return false;
-
-            var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-            // Adjust for leap years
-            if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-                monthLength[1] = 29;
-
-            // Check the range of the day
-            return day > 0 && day <= monthLength[month - 1];
-        };
-
-
-        function evalDate(){
-        // define date string to test
-          var JoinedDate = document.getElementById('dateJoined').value;
-        // check date and print message
-            if (!validateDate(JoinedDate)) {
-                alert('Invalid date format')
-                document.getElementById('dateJoined').focus();
-                throw new Error("This is not an error. This is just to abort javascript.")
-            }
-        }
+			document.getElementById('submit').onsubmit = 	usernameBlankValidation, passwordBlankValidation,nameBlankValidation,phoneNoBlankValidation,dateBlankValidation,phoneNumValidation,checkEmail,nameValidation;
 
         </script>
     </body>
