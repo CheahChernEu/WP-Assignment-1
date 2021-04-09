@@ -18,33 +18,34 @@ if(isset($_POST['action'])) {
     case 'manageProfile':
       manageVolunteerProfile();
       break;
-
+    //register new staff
     case 'registerStaff':
       registerStaff();
       break;
-
+    //create new trip
     case 'createTrip':
       createTrip();
       break;
-
+    //update application status
     case 'updateApp':
       updateApp();
       break;
-
+    //manage applications
     case 'manageApp':
       manageApp();
       break;
-
+    //view documents
     case 'viewDoc':
       viewDoc();
         break;
-
+    //apply for trip
     case 'applyForTrip':
       applyForTrip();
       break;
   }
 }
 
+//for result of select
 function db_search($sql){
 
   $servername = "localhost";
@@ -65,7 +66,7 @@ function db_search($sql){
   return $result->fetch_object();
 }
 
-// for result of insert, update an existing object
+// for result of insert, update, delete an existing object
 function db_result($sql){
   $servername = "localhost";
   $username   = "root";
@@ -84,35 +85,23 @@ function db_result($sql){
   return $result;
 }
 
+//user login
+function userLogin(){
+  $sql = "SELECT * FROM hbmember where position = 'manager'";
+  $manager = db_search($sql); //object is assigned or null
 
-//For return id after insert object
-function db_insert($sql){
-
-  $servername = "127.0.0.1";
-  $username   = "root";
-  $password   = "";
-  $dbname     = "crs";
-
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  //if the manager is not in the database table yet, hard code
+  if($manager==null){
+      $managerSQL = "INSERT INTO `hbmember`(`userID`,`username`, `password`, `name`, `contactNo`, `position`, `dateJoined`) VALUES (1,'manager@gmail.com','manager123','Jason Lee',0186764534,'manager','2021-03-31')";
+      db_result($managerSQL);
   }
 
-  $result = $conn->query($sql);
+  //get the inputs from the login page
+  $sql = "SELECT * FROM hbmember where username = '" . $_POST['username'] . "' and password = '" . $_POST['password'] . "'";
 
-  return $conn->insert_id;
-}
-
-
-function userLogin(){
-$sql = "SELECT * FROM hbmember where username = '" . $_POST['username'] . "' and password = '" . $_POST['password'] . "'";
-
-  $member = db_search($sql);
-
+  $member = db_search($sql); //object is assigned or null
   if($member != null){
+    //when the user login, all the info are stored into the session for futher activities
     $_SESSION['userID'] = $member->userID;
     $_SESSION['username'] = $member->username;
     $_SESSION['password'] = $member->password;
@@ -133,16 +122,18 @@ $sql = "SELECT * FROM hbmember where username = '" . $_POST['username'] . "' and
         header("Location:volunteerHomepage.php?position=volunteer");
         echo "<script> window.location.assign('volunteerHomepage.php'); </script>";
         break;
-      default:
+    default:
         header("Location:homepage.php?error=usernotfound");
         echo "<script> window.location.assign('homepage.php'); </script>";
         break;
        }
   }
   else {
+        //if user not found
         echo '<script> alert("Invalid username or password! You will be redirect to HELP Bomba Homepage ")</script>';
         echo "<script> window.location.assign('homepage.php'); </script>";
   }
+
 
 
 }
@@ -278,22 +269,26 @@ function manageVolunteerProfile(){
 }
 
 function registerStaff(){
-  $conn = mysqli_connect("localhost","root","","crs");
+  //get the inputs from the record new staff form
   $username = $_POST['usernameStaff'];
   $password = $_POST['passwordStaff'];
   $name = $_POST['nameStaff'];
   $phoneNo = $_POST['phoneNoStaff'];
   $dateJoined = $_POST['dateJoinedStaff'];
 
-    $sql1="SELECT * FROM `hbmember` WHERE username = '$username'";
-    $select = db_search($sql1);
-  if($select!=null){
-    echo '<script> alert("This staff has been existed")</script>';
-    echo "<script> window.location.assign('manager.php');</script>";
-  }else{
+  //check if there is existing staff being created
+  $sql1="SELECT * FROM `hbmember` WHERE username = '$username'";
+  $select = db_search($sql1);
 
+  if($select!=null){
+        echo '<script> alert("This staff has been existed")</script>';
+        echo "<script> window.location.assign('manager.php');</script>";
+  }else{
+    //insert into database if the staff is new
      $sql2 = "INSERT INTO `hbmember`(`username`, `password`, `name`, `contactNo`, `position`, `dateJoined` ) VALUES ('$username', '$password', '$name', '$phoneNo', 'staff', '$dateJoined' )";
-     $insert = mysqli_query($conn,$sql2);
+
+     $insert = db_result($sql2);
+
      if(!$insert){
        echo"ERROR";
      }else{
@@ -304,7 +299,7 @@ function registerStaff(){
 }
 
 function createTrip(){
-  $conn = mysqli_connect("localhost","root","","crs");
+  //get the input from the create crisis trip form
   $tripDate = $_POST['tripDate'];
   $location = $_POST['location'];
   $description = $_POST['description'];
@@ -312,65 +307,55 @@ function createTrip(){
   $minDuration = $_POST['minDuration'];
   $skillReq = $_POST['skillReq'];
   $numVolunteers = $_POST['numVolunteers'];
-
   $userID = $_SESSION['userID'];
 
+  //Check if the trip is being created on same date with the exisiting trip date
   $sql1="SELECT * FROM `crisistrip` WHERE cTDate = '$tripDate'";
   $select = db_search($sql1);
-if($select!=null){
-  echo '<script> alert("On this date, there is another crisis trip being held, Please choose a different date for the new trip!")</script>';
-  echo "<script> window.location.assign('staff.php');</script>";
-}else{
 
-   $sql2 = "INSERT INTO `crisistrip`( `cType`, `description`, `cTDate`, `location`, `minDuration`, `numVolunteers`, `skillRequirement(s)`, `availableSlots`, `userID_fk`) VALUES ('$cType', '$description', '$tripDate', '$location', '$minDuration', '$numVolunteers', '$skillReq', '$numVolunteers', '$userID')";
+  if($select!=null){
+    echo '<script> alert("On this date, there is another crisis trip  being held. Please choose a different date for the new trip!")</script>';
+    echo "<script> window.location.assign('staff.php');</script>";
+  }else{
+     $sql2 = "INSERT INTO `crisistrip`( `cType`, `description`, `cTDate`, `location`, `minDuration`, `numVolunteers`, `skillRequirement(s)`, `availableSlots`, `userID_fk`) VALUES ('$cType', '$description', '$tripDate', '$location', '$minDuration', '$numVolunteers', '$skillReq', '$numVolunteers', '$userID')";
 
-   $insert = mysqli_query($conn,$sql2);
-   if(!$insert){
-     echo"ERROR";
-   }else{
-     echo '<script> alert("This crisis trip has been created successfully")</script>';
-     echo "<script> window.location.assign('staff.php');</script>";
+     $insert = db_result($sql2);
+
+     if(!$insert){
+       echo"ERROR";
+     }else{
+       echo '<script> alert("This crisis trip has been created successfully")</script>';
+       echo "<script> window.location.assign('staff.php');</script>";
+     }
    }
- }
 }
 
-
-
-
 function updateApp(){
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "crs";
-
-  // Create connection
-  $conn = mysqli_connect($servername, $username, $password, $dbname);
-  // Check connection
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
+  //get the input from the document form
     $applicationID = $_POST['applicationID'];
     $documentID = $_POST['documentID'];
     $statusUpdate = $_POST['statusUpdate'];
     $remarks = $_POST['remarks'];
 
+    //check if there is matching application
     $sql = "SELECT * FROM `application` WHERE applicationID = $applicationID";
-    $check = mysqli_query($conn, $sql);
+    $check = db_search($sql);
 
 
-
-    if(mysqli_num_rows($check)>0){
-        $sql1 = "UPDATE Application SET applicationStatus = '$statusUpdate', remarks = '$remarks' WHERE applicationID = '$applicationID' AND documentID_fk = '$documentID'";
-      $queryUpdate = mysqli_query($conn,  $sql1);
+    if($check!=null){
+      //update application status and remarks if no error
+      $sql1 = "UPDATE Application SET applicationStatus = '$statusUpdate', remarks = '$remarks' WHERE applicationID = '$applicationID' AND documentID_fk = '$documentID'";
+      $queryUpdate = db_result($sql1);
       if($queryUpdate==null){
          echo '<script> alert("Error occur! Please retry again!")</script>';
          echo "<script> window.location.assign('Application.php'); </script>";
       }else{
         $accepted = 'ACCEPTED';
-        if(strcmp($statusUpdate, $accepted)== 0){
+        //To check if the status is chosen as 'ACCEPTED'
+        if(strcmp($statusUpdate, $accepted)==0){
+          //reduce the available slots by 1 from the selected crisis trip
           $sql2 = "UPDATE `crisistrip` SET `availableSlots`= availableSlots-1  WHERE cTID = (SELECT cTID_fk FROM application WHERE applicationID = $applicationID)";
-          $tripUpdate = mysqli_query($conn,  $sql2);
+          $tripUpdate = db_result($sql2);
           if($tripUpdate == null){
             echo '<script> alert("Application status has been updated!")</script>';
             echo '<script> alert("Error: Available slots is not deducted")</script>';
@@ -378,18 +363,13 @@ function updateApp(){
             echo '<script> alert("Application status has been updated!")</script>';
             echo '<script> alert("Available slots have been updated!")</script>';
           }
-
           echo "<script> window.location.assign('Application.php'); </script>";
         } else {
-       echo '<script> alert("Application status has been updated!")</script>';
-
-
-       echo "<script> window.location.assign('Application.php'); </script>";
-
-
+             echo '<script> alert("Application status has been updated!")</script>';
+             echo "<script> window.location.assign('Application.php'); </script>";
+        }
       }
     }
-  }
     else{
         echo '<script> alert("This application does not exist!")</script>';
         echo "<script> window.location.assign('Application.php'); </script>";
@@ -397,29 +377,19 @@ function updateApp(){
 }
 
 function manageApp(){
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "crs";
-
-  // Create connection
-  $conn = mysqli_connect($servername, $username, $password, $dbname);
-  // Check connection
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
+  //if the delete button is pressed
   if(isset($_POST['delete'])){
+    //checkbox contain trip ID
     $Checkbox = $_POST['checkbox'];
 
-
+    //check if the trip is exisiting
     $sql = "SELECT * FROM `crisistrip` WHERE cTID = $Checkbox";
-    $check = mysqli_query($conn, $sql);
+    $check = db_search($sql);
 
-
-    if(mysqli_num_rows($check)>0){
+    if($check!=null){
+      //delete from the database about the trip
       $sql1 = "DELETE FROM `crisistrip` WHERE cTID = $Checkbox";
-      $queryDelete = mysqli_query($conn,  $sql1);
+      $queryDelete = db_result($sql1) ;
       if($queryDelete==null){
          echo '<script> alert("Error occur! Please retry again!")</script>';
          echo "<script> window.location.assign('ManageApplications.php'); </script>";
@@ -432,39 +402,28 @@ function manageApp(){
         echo '<script> alert("Record selected does not exist!")</script>';
         echo "<script> window.location.assign('ManageApplications.php'); </script>";
     }
-
   }else{
-
+    //if the view application button is pressed
     if(isset($_POST['viewApp'])){
+      //checkbox contain trip ID
       $Checkbox = $_POST['checkbox'];
+      //store into the session for futher activities
       $_SESSION["cTID"] = $Checkbox;
       echo "<script> window.location.assign('Application.php'); </script>";
     }
-
   }
 }
 
 function viewDoc(){
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "crs";
-
-  // Create connection
-  $conn = mysqli_connect($servername, $username, $password, $dbname);
-  // Check connection
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
+  //if the view document button is pressed
   if(isset($_POST['viewDoc'])){
+    //checkbox contain trip ID
     $checkbox = $_POST['checkboxApp'];
+    //store into the session for futher activities
     $_SESSION["applicationID"] = $checkbox;
     echo '<script> function </script>';
     echo "<script> window.location.assign('Document.php'); </script>";
     }
-
-
 }
 
 
@@ -516,10 +475,11 @@ function applyForTrip(){
 }
 
 function selectTrip(){
-  $conn = mysqli_connect("localhost","root","","crs");
+  //get the userID stored in the SESSION
   $userid =  $_SESSION['userID'];
+  //select the objects that having same userID, availableSlots > 0 and greater than today's date
   $query = "SELECT * FROM crisistrip c inner join hbmember m WHERE c.userID_fk = $userid and m.userID = $userid and c.availableSlots>0 and c.cTDate>=CURDATE()";
-  return $query;
+  return $query; //apply in ManagerApplications.php
 }
 
 
