@@ -18,7 +18,7 @@ h1,h2,h3,h4,h5,h6 {
 
 h1{
     font-size: 40px;
-    font-weight: 200;
+    font-weight: 500;
     line-height: 50px;
     padding: 20px 0 20px 0;
 }
@@ -96,19 +96,28 @@ p{
 
 .main .main-content{
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    min-height: 795px;
+    padding-top: 100px;
+    min-height: 500px;
     width: 100%;
 }
 
-.list-group-item{
-    background: white;
-    box-sizing: border-box;
-    border-width: 3px;
-    border-style: solid;
-    border-color: orange;
-    text-align: left;
+.content-table{
+    border-collapse: collapse;
+    font-size: 1.0vw;
+    width: 100%;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:nth-child(odd){background-color: white}
+
+.content-row:hover{background-color: lightgrey;}
+
+#main-section{
+  background: url(backgroundPic.jpeg) 50% 0 repeat-y fixed;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
 
 #contact{

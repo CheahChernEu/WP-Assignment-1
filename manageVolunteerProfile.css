@@ -6,7 +6,10 @@
 }
 
 body{
-    background: white;
+  background: url(backgroundPic.jpeg) fixed;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -95,8 +98,9 @@ p{
 
 /*FORM*/
 .form {
-    margin-top: 630px;
+    margin-top: 730px;
     margin-bottom: -330px;
+    margin
     position: relative;
     top: 50%;
     left: 50%;
@@ -109,6 +113,8 @@ p{
     border-radius: 20px;
     border-style: solid;
     border-color: orange;
+    box-shadow: 0 25px 30px rgba(0,0,0,0.25),
+			0 30px 30px rgba(0,0,0,0.22);
 }
 
 .form h2 {
@@ -188,6 +194,8 @@ p{
 #Reset, #Submit{
     border: 1px solid black;
 }
+
+
 
 #contact{
     background: url(contactus-background-right.jpg) 50% 0 repeat-y fixed;

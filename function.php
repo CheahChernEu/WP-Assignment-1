@@ -87,17 +87,17 @@ function db_result($sql){
 
 //user login
 function userLogin(){
-  $sql = "SELECT * FROM hbmember where position = 'manager'";
+  $sql = "SELECT * FROM crsmember where position = 'manager'";
   $manager = db_search($sql); //object is assigned or null
 
   //if the manager is not in the database table yet, hard code
   if($manager==null){
-      $managerSQL = "INSERT INTO `hbmember`(`userID`,`username`, `password`, `name`, `contactNo`, `position`, `dateJoined`) VALUES (1,'manager@gmail.com','manager123','Jason Lee',0186764534,'manager','2021-03-31')";
+      $managerSQL = "INSERT INTO `crsmember`(`userID`,`username`, `password`, `name`, `contactNo`, `position`, `dateJoined`) VALUES (1,'manager@gmail.com','manager123','Jason Lee',0186764534,'manager','2021-03-31')";
       db_result($managerSQL);
   }
 
   //get the inputs from the login page
-  $sql = "SELECT * FROM hbmember where username = '" . $_POST['username'] . "' and password = '" . $_POST['password'] . "'";
+  $sql = "SELECT * FROM crsmember where username = '" . $_POST['username'] . "' and password = '" . $_POST['password'] . "'";
 
   $member = db_search($sql); //object is assigned or null
   if($member != null){
@@ -147,10 +147,12 @@ function manageVolunteerProfile(){
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
 
-  $sql7 = "SELECT password FROM hbmember WHERE userID = '".$_SESSION['userID']."'";
+  //Get the current password of the user for verification
+  $sql7 = "SELECT password FROM crsmember WHERE userID = '".$_SESSION['userID']."'";
   $result3 = mysqli_query($conn, $sql7);
   if ($result3 -> num_rows > 0){
     while ($row = $result3 -> fetch_assoc()){
+      //Store the value of the current password into $curPassword
       $curPassword = $row["password"];
     }
   }
@@ -158,12 +160,14 @@ function manageVolunteerProfile(){
   $oldpassword = $_POST['oldpassword'];
   $newpassword = $_POST['newpassword'];
 
+  //If the oldpassword section inputed by the user is equal to the current password
   if ($oldpassword == $curPassword){
+    //If the newpassword section is not left blank, the system will update the password to the new password, else the oldpassword will be inserted as the password
     if (!empty($newpassword)){
-      $sql = "UPDATE hbmember SET password = '$_POST[newpassword]', name = '$_POST[name]', contactNo = '$_POST[phoneno]' WHERE password = '$oldpassword' AND userID = '".$_SESSION['userID']."'";
+      $sql = "UPDATE crsmember SET password = '$_POST[newpassword]', name = '$_POST[name]', contactNo = '$_POST[phoneno]' WHERE password = '$oldpassword' AND userID = '".$_SESSION['userID']."'";
     }
     else{
-      $sql = "UPDATE hbmember SET password = '$_POST[oldpassword]', name = '$_POST[name]', contactNo = '$_POST[phoneno]' WHERE password = '$oldpassword' AND userID = '".$_SESSION['userID']."'";
+      $sql = "UPDATE crsmember SET password = '$_POST[oldpassword]', name = '$_POST[name]', contactNo = '$_POST[phoneno]' WHERE password = '$oldpassword' AND userID = '".$_SESSION['userID']."'";
     }
     $sql_run = mysqli_query($conn, $sql);
   }
@@ -176,12 +180,15 @@ function manageVolunteerProfile(){
     $documenttype = $_POST['documenttype'];
     $dateofexpiry = $_POST['dateofexpiry'];
 
+    //To store the images uploaded by the user in the folder named images
     $target = "images/".basename($_FILES['fileupload']['name']);
     $file = $_FILES['fileupload']['name'];
-
+    //Get the document table row of the userID of the user of this current session
     $sql2 = "SELECT * FROM `Document` WHERE userID_fk = '".$_SESSION['userID']."'";
     $result = db_search($sql2);
+    //If the user does not have a document table row, then the system will insert a new row
     if ($result == null){
+      //If user does not upload any image, only the docImage column will not be updated
       if ($_FILES['fileupload']['size'] == 0){
         $sql3 = "INSERT INTO `Document`(`documentType`, `expiryDate`, `userID_fk`) VALUES ('$documenttype', '$dateofexpiry', '".$_SESSION['userID']."')";
       }
@@ -190,13 +197,17 @@ function manageVolunteerProfile(){
       }
       $sql3_run = mysqli_query($conn, $sql3);
       if ($sql3_run){
+        //If the uploaded image is successfully stored in the folder named images
         if(move_uploaded_file($_FILES['fileupload']['tmp_name'], $target)){
+          //Get the application table row where the userID of the user of current session
           $sql5 = "SELECT * FROM `Application` WHERE userID_fk = '".$_SESSION['userID']."'";
           $result2 = db_search($sql5);
+          //If the user has not applied for any trip yet, then there will be no application table row with the userID of the current session user being returned
           if ($result2 == null){
             echo '<script type="text/javascript">alert("All Data Updated and New Document Inserted but Application Status Not Updated because You Have Not Applied Any Trip Yet")</script>';
             echo "<script> window.location.assign('volunteerHomepage.php'); </script>";
           }
+          //If the application table row is found, the system will only update the applicationStatus to 'NEW' and remarks to NULL where the application is rejected by the staff
           else{
             $sql6 = "UPDATE Application SET applicationStatus = 'NEW', remarks = NULL WHERE applicationStatus = 'REJECTED' AND userID_fk = '".$_SESSION['userID']."'";
             $sql6_run = mysqli_query($conn, $sql6);
@@ -221,6 +232,7 @@ function manageVolunteerProfile(){
         echo "<script> window.location.assign('volunteerHomepage.php'); </script>";
       }
     }
+    //If the user already has a table row in document table, the system will update the row
     else{
       if ($_FILES['fileupload']['size'] == 0){
         $sql4 = "UPDATE Document SET documentType = '$documenttype', expiryDate = '$dateofexpiry' WHERE userID_fk = '".$_SESSION['userID']."'";
@@ -277,7 +289,7 @@ function registerStaff(){
   $dateJoined = $_POST['dateJoinedStaff'];
 
   //check if there is existing staff being created
-  $sql1="SELECT * FROM `hbmember` WHERE username = '$username'";
+  $sql1="SELECT * FROM `crsmember` WHERE username = '$username'";
   $select = db_search($sql1);
 
   if($select!=null){
@@ -285,7 +297,7 @@ function registerStaff(){
         echo "<script> window.location.assign('manager.php');</script>";
   }else{
     //insert into database if the staff is new
-     $sql2 = "INSERT INTO `hbmember`(`username`, `password`, `name`, `contactNo`, `position`, `dateJoined` ) VALUES ('$username', '$password', '$name', '$phoneNo', 'staff', '$dateJoined' )";
+     $sql2 = "INSERT INTO `crsmember`(`username`, `password`, `name`, `contactNo`, `position`, `dateJoined` ) VALUES ('$username', '$password', '$name', '$phoneNo', 'staff', '$dateJoined' )";
 
      $insert = db_result($sql2);
 
@@ -437,18 +449,23 @@ function applyForTrip(){
   $conn = new mysqli($servername, $username, $password, $dbname);
 
   if (isset($_POST['applyForTrip'])){
+    //Get the document table row of the userID of the user in the current session
     $sql1 = "SELECT * FROM Document WHERE userID_fk = '".$_SESSION['userID']."'";
     $result = mysqli_query($conn, $sql1);
+    //If the user has a row in the document table
     if ($result -> num_rows > 0){
       while ($row = $result -> fetch_assoc()){
+        //Store the documentID into $documentID_fk
         $documentID_fk = $row["documentID"];
       }
     }
+    //If the user does not have a row in document table, user cannot apply for trip
     else{
       echo '<script type="text/javascript">alert("You do not have a document, please proceed to manage profile section to update your document")</script>';
       echo "<script> window.location.assign('applyForTrip.php'); </script>";
     }
 
+    //Insert a new row in application table
     $date = date('Y-m-d H:i:s');
     $sql2 = "INSERT INTO `Application`(`applicationDate`, `applicationStatus`, `userID_fk`, `cTID_fk`, `documentID_fk`) VALUES ('$date', 'NEW', '".$_SESSION['userID']."', '$_POST[hidden]', '$documentID_fk')";
 
@@ -478,7 +495,7 @@ function selectTrip(){
   //get the userID stored in the SESSION
   $userid =  $_SESSION['userID'];
   //select the objects that having same userID, availableSlots > 0 and greater than today's date
-  $query = "SELECT * FROM crisistrip c inner join hbmember m WHERE c.userID_fk = $userid and m.userID = $userid and c.availableSlots>0 and c.cTDate>=CURDATE()";
+  $query = "SELECT * FROM crisistrip c inner join crsmember m WHERE c.userID_fk = $userid and m.userID = $userid and c.availableSlots>0 and c.cTDate>=CURDATE()";
   return $query; //apply in ManagerApplications.php
 }
 

@@ -18,7 +18,7 @@ h1,h2,h3,h4,h5,h6 {
 
 h1{
     font-size: 40px;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 50px;
     padding: 20px 0 20px 0;
 }
@@ -42,11 +42,11 @@ h4{
 }
 
 p{
-    color: #757575;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 29px;
-    letter-spacing: 0.5px;
+  color: #757575;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 29px;
+  letter-spacing: 0.5px;
 }
 
 /*MENU*/
@@ -153,6 +153,13 @@ p{
 .section-btn a:hover span,
 .section-btn a:focus span{
     transform: rotateX(90deg) translateY(-22px);
+}
+
+#main-section{
+  background: url(backgroundPic.jpeg) fixed;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
 
 #contact{

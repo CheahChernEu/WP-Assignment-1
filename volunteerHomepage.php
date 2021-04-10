@@ -1,11 +1,18 @@
+<!--
+Author: LEE WAI HOE
+Student ID: B1801134
+-->
+<?php
+  require_once("function.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Apply For Trip</title>
+        <title>Volunteer Homepage</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="volunteerHomepage.css">
+        <link rel="stylesheet" type="text/css" href="volunteerhomepage.css">
     </head>
     <body>
         <header>
@@ -35,12 +42,31 @@
                 </div>
               </nav>
         </header>
-        <div class="main">
+
+        <?php
+        $servername = "localhost";
+        $username   = "root";
+        $password   = "";
+        $dbname     = "crs";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $sql = "SELECT * FROM crsmember WHERE userID = '".$_SESSION['userID']."'";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result -> num_rows > 0){
+          while ($row = $result -> fetch_assoc()){
+            $name = $row["name"];
+          }
+        }
+        ?>
+
+        <div class="main" id="main-section">
             <div class = "container">
                 <div class="row pt-5">
                     <div class="home-text col-mid-8 col-sm-12 mt-5">
-                        <h1>Welcome Volunteer</h1>
-                        <p>You are the chosen one</p>
+                        <h1>Welcome <?php echo $name;?></h1>
+                        <p style="font-size: 25px; font-weight: 500;">You are the chosen one</p>
                         <ul class="section-btn">
                             <a href="applyForTrip.php"><span data-hover="Apply for a trip now">Apply for a trip now</span></a>
                         </ul>

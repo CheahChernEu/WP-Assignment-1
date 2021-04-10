@@ -1,3 +1,11 @@
+<!--
+Author: LEE WAI HOE
+Student ID: B1801134
+-->
+<?php
+  require_once("function.php");
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,49 +44,85 @@
               </nav>
         </header>
 
-        <section class="main">
-            <div class="main-content">
-                <h1>List of Applications</h1>
-                <div class="listings container">
-                    <div class="list-group">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <h3 class="mb-1">Flood Rescue</h3>
-                                <p class="mb-1">Date: 12/04/2021</p>
-                                <p class="mb-1">Description: Saving the flood victims and provides foods for them</p>
-                                <p class="mb-1">Application: Accepted</p>
-                            </li>
-                            <li class="list-group-item">
-                                <h3 class="mb-1">Earthquake Bomba</h3>
-                                <p class="mb-1">Date: 03/05/2021</p>
-                                <p class="mb-1">Description: Saving the earthquake victims and provides shelter for them</p>
-                                <p class="mb-1">Application: Rejected</p>
-                                <p class="mb-1">Remarks: Please update your documents at the manage profile section</p>
-                            </li>
-                            <li class="list-group-item">
-                                <h3 class="mb-1">Fire Fighter</h3>
-                                <p class="mb-1">Date: 29/03/2021</p>
-                                <p class="mb-1">Description: Saving the wildfire victims and provides foods and shelter for them</p>
-                                <p class="mb-1">Application: Accepted</p>
-                            </li>
-                            <li class="list-group-item">
-                                <h3 class="mb-1">Earth Protectors</h3>
-                                <p class="mb-1">Date: 20/01/2021</p>
-                                <p class="mb-1">Description: Saving the earthquake victims and provides clothes for them</p>
-                                <p class="mb-1">Application: Accepted</p>
-                            </li>
-                            <li class="list-group-item">
-                                <h3 class="mb-1">Wildlife Rescue</h3>
-                                <p class="mb-1">Date: 06/07/2021</p>
-                                <p class="mb-1">Description: Saving the wildfire victims and provides a temporary shelter for the wild animals</p>
-                                <p class="mb-1">Application: Rejected</p>
-                                <p class="mb-1">Remarks: Please update your documents at the manage profile section</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div id="main-section">
+          <section class="main">
+              <div class="main-content container">
+                  <h1>List of Applications</h1>
+                  <div id = "searchfunction-main">
+                    <form name = "search-form" action = "viewApplicationStatus.php" method = "POST" >
+                      <div class="inputbox">
+                          <label for="searchbox" style="font-size: 20px; font-weight: 400;">Search By ID or any Keyword of Trip Description</label>
+                          <input type="text" placeholder="e.g. 2 or wild animals" id="searchbox" name="searchbox" autofocus>
+                          <input type="submit" id="submit" name="search" value="Search">
+                      </div>
+                    </form>
+                    <?php
+                    $servername = "localhost";
+                    $username   = "root";
+                    $password   = "";
+                    $dbname     = "crs";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    if ($conn->connect_error) {
+                      die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT * FROM Application INNER JOIN crisistrip ON Application.cTID_fk = crisistrip.cTID WHERE Application.userID_fk = '".$_SESSION['userID']."'";
+
+                    //The search function
+                    if (isset($_POST['search'])){
+                      $search_term = $_POST['searchbox'];
+                      $sql = "SELECT * FROM Application INNER JOIN crisistrip ON Application.cTID_fk = crisistrip.cTID WHERE (Application.userID_fk = '".$_SESSION['userID']."') AND (crisistrip.cTID = '$search_term' OR crisistrip.description LIKE '%$search_term%')";
+                    }
+                    $sql_run = mysqli_query($conn, $sql);
+                    ?>
+                  </div>
+                  <div id = "table-main">
+                    <table class = "content-table">
+                      <tr class = "header-row" style="background-color: orange;">
+                        <th>CTID</th>
+                        <th>Trip Date</th>
+                        <th>Trip Description</th>
+                        <th>Application ID</th>
+                        <th>Application Date</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                      </tr>
+
+                      <?php
+                      $servername = "localhost";
+                      $username   = "root";
+                      $password   = "";
+                      $dbname     = "CRS";
+
+                      // Create connection
+                      $conn = new mysqli($servername, $username, $password, $dbname);
+                      if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                      }
+
+                      if ($sql_run -> num_rows > 0){
+                        while ($row = $sql_run -> fetch_assoc()){
+                          echo "<tr class='content-row'>";
+                          echo "<td>".$row['cTID']."</td>";
+                          echo "<td>".$row['cTDate']."</td>";
+                          echo "<td>".$row['description']."</td>";
+                          echo "<td>".$row['applicationID']."</td>";
+                          echo "<td>".$row['applicationDate']."</td>";
+                          echo "<td>".$row['applicationStatus']."</td>";
+                          echo "<td>".$row['remarks']."</td>";
+                          echo "</tr>";
+                        }
+                      }
+                      else{
+                        echo "0 result";
+                      }
+                      ?>
+                    </table>
+                  </div>
+              </div>
+          </section>
+        </div>
 
         <section id="contact">
             <footer class="py-5">
@@ -114,5 +158,22 @@
                 </div>
             </footer>
           </section>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script>
+
+            $(document).ready(function () {
+              //=================================================================
+              //click on table body
+          		$('#table-main').on('click', 'tr', function() {
+          		    //get row contents into an array
+                  var tableData = $(this).children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+                  var td = "CTID: " + tableData[0] + "\nTrip Date: " + tableData[1] + "\nTrip Description: " + tableData[2] + "\nApplication ID: " + tableData[3] + "\nApplication Date: " + tableData[4] + "\nApplication Status: " + tableData[5] + "\nRemarks: " + tableData[6];
+                  alert(td);
+          		});
+        		});
+          </script>
     </body>
 </html>
