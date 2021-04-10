@@ -11,14 +11,15 @@
 <div class="bg col-lg-12 col-md-12 col-sm-12" >
   <div class="container " id="container">
   <div class="form-container sign-up-container">
-  <form action="signUp.php" method="post">
+  <form action="function.php" method="post">
   	<h2>Sign Up Credentials</h2>
   	<input  type="email" id="signUpUsername" name="signUpUsername" onkeyup="checkSignUpEmail(); return false;" placeholder="Username" required>
 		<div id="errorName1"></div>
 	  <input type="password" id="signUpPw" name="signUpPw" minlength="8" onkeyup="checkPass(); return false;" placeholder="Password" required>
 		<div id="error1"></div>
+		<input name="action" value="signUp" hidden>
 		<button id="signUpBtn">Sign Up</button>
-</form>
+	</form>
 </div>
 
 <!-- Sign In  -->

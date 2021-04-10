@@ -42,6 +42,10 @@ if(isset($_POST['action'])) {
     case 'applyForTrip':
       applyForTrip();
       break;
+    //signUp for volunteer
+    case 'signUp':
+      signUp();
+      break;
   }
 }
 
@@ -499,20 +503,25 @@ function selectTrip(){
   return $query; //apply in ManagerApplications.php
 }
 
+function signUp(){
 
+$username = $_POST['signUpUsername'];
+$password = $_POST['signUpPw'];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$sql1="SELECT * FROM `crsmember` WHERE username = '$username'";
+$select = db_search($sql1);
+if($select!=null){
+  echo '<script> alert("This user has been existed")</script>';
+  echo "<script> window.location.assign('login.php');</script>";
+}else{
+    $sq2 = "INSERT INTO `crsmember`( `username`, `password`, `position` ) VALUES ('$username','$password','volunteer')";
+    $insert = db_result($sq2);
+    if(!$insert){
+      echo"Sign Up Error";
+    }else{
+      echo '<script> alert("Sign Up Succesfully!")</script>';
+      echo "<script> window.location.assign('homepage.php');</script>";
+    }
+  }
+}
 ?>
