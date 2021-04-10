@@ -23,8 +23,8 @@ Student ID: B1801196
         <title>Staff Homepage</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="staffCSS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+        <link rel="stylesheet" type="text/css" href="managerStaff.css">
     </head>
     <body>
         <header>
@@ -70,19 +70,21 @@ Student ID: B1801196
                 </div>
               </nav>
         </header>
-        <div class="main" >
-            <div class = "container" >
-                <div class="row pt-3">
-                    <div class="home-text col-mid-8 col-sm-12 mt-5">
-                        <h1>Welcome Back! <?php echo $_SESSION["name"]; ?> </h1>
-                        <p>Together we achieve MORE</p>
-                        <ul class="section-btn">
-                          <button type="button" data-toggle="modal" data-target="#organizeModal"><span data-hover="Organize Trip Here!">Organize Trip Here!</span></button>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+				<div class="main" id="main-background">
+				    <div class = "container">
+				        <div class="row pt-3">
+				            <div class="home-text col-mid-8 col-sm-12 mt-5">
+				              <!-- Use SESSION to store and display the name of the user when log in -->
+				                <h1>Welcome Back! <?php echo $_SESSION["name"]; ?> </h1>
+				                <p>Together we achieve MORE</p>
+				                <ul class="section-btn">
+				                  <button type="button" data-toggle="modal" data-target="#organizeModal"><span data-hover="Organize Trip Here!">Organize Trip Here!</span></button>
+				                </ul>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 
 				<!-- footer -->
         <section id="contact">
@@ -276,7 +278,7 @@ Student ID: B1801196
           }
       }
 
-
+				//event property
 			document.getElementById('submit').onsubmit = tDateValidation,locationBlankValidation,descBlankValidation,numVBlankValidation, numVGreater1,minDBlankValidation,skillReqBlankValidation,numDGreater1,descriptionValidation,locationValidation;
 
         </script>

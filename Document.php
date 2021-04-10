@@ -15,7 +15,7 @@ Student ID: B1801196
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <link rel="stylesheet" type="text/css" href="Document.css">
     </head>
-    <body>
+    <body style="background: url(background5.jpg) fixed; background-size: cover;background-position: center center;position: relative;">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top bg">
                 <div class="container">
@@ -90,7 +90,7 @@ Student ID: B1801196
             while($row = mysqli_fetch_assoc($resultRes)):
           ?>
                   <div class="container" id="form">
-                    <form action="function.php" method="post">
+                    <form action="function.php" method="post" >
                       <fieldset>
                         <legend style="font-weight:bold; text-center:center;">Document Information:</legend>
                       <div class="row">
@@ -157,12 +157,12 @@ Student ID: B1801196
                           <input type="text"
                           class="form-control" name="remarks" id="remarks" placeholder="remarks on documents" required>
                       	</div>
+											</div>
                       <div class="row" id="btn" >
                         <a href="Application.php"><button type="button" id="Back" value="Back">Back</button></a>
 												<!-- call function in the function.php -->
                           <input name = "action" value="updateApp" hidden>
                           <button type="submit" id="Submit" value="Update" name="Update"  onclick="checkStatus(), remarksBlankValidation();">Update</button>
-                       </datalist>
                       </div>
                     </fieldset>
                   </form>

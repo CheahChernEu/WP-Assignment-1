@@ -14,7 +14,7 @@ Student ID: B1801196
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 				<link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
-        <link rel="stylesheet" type="text/css" href="staffCSS.css">
+        <link rel="stylesheet" type="text/css" href="managerStaff.css">
     </head>
     <body>
         <header>
@@ -64,7 +64,7 @@ Student ID: B1801196
               </nav>
         </header>
 
-        <div class="main">
+        <div class="main" id="main-background">
             <div class = "container" style="overflow-x:auto;">
                 <div class="row pt-5" table-wrapper-scroll-y my-custom-scrollbar>
                     <div class="home-text col-md-12 col-sm-12 mt-5">

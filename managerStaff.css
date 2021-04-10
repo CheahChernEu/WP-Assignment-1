@@ -6,8 +6,7 @@
 }
 
 body{
-    background: white;
-    font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* TYPOGRAPHY */
@@ -99,12 +98,26 @@ p{
     align-items: center;
     height: 100vh;
     position: relative;
-    background: white;
 }
 
-.main h1{
+#main-background{
+  background: url(background5.jpg) fixed;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.main h1 {
     font-size: 7vw;
     line-height: 1.2em;
+    color:black;
+    font-family: 'Nosifer',sans-serif;
+}
+
+.main p {
+    font-size: 1.6vw;
+    line-height: 0.3em;
+    color:white;
     font-family: 'Nosifer',sans-serif;
 }
 
@@ -114,7 +127,7 @@ p{
 }
 
 .section-btn button{
-    color: #ffffff;
+    color: black;
     font-weight: normal;
     line-height: 45px;
     perspective: 1000px;

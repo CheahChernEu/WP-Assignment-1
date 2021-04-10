@@ -5,11 +5,11 @@
 	<link rel="stylesheet" type="text/css" href="loginStyling.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body style="background: url(background2.jpg) fixed; background-size: cover;background-position: center center;position: relative;">
 
 <!-- sign up  -->
-<div class="bg">
-  <div class="container" id="container">
+<div class="bg col-lg-12 col-md-12 col-sm-12" >
+  <div class="container " id="container">
   <div class="form-container sign-up-container">
   <form action="signUp.php" method="post">
   	<h2>Sign Up Credentials</h2>

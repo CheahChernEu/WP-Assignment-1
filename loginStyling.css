@@ -6,7 +6,7 @@
 }
 
 body {
-	background: #f6f5f7;
+	background: #F6F5F7;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -15,8 +15,6 @@ body {
 	height: 100vh;
 	margin: -20px 0 50px;
 }
-
-
 
 h1 {
 	font-weight: bold;

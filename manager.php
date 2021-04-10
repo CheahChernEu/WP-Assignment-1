@@ -14,7 +14,7 @@ Student ID: B1801196
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="managerStyling.css">
+        <link rel="stylesheet" type="text/css" href="managerStaff.css">
     </head>
     <body>
         <header>
@@ -56,20 +56,21 @@ Student ID: B1801196
                 </div>
               </nav>
         </header>
-        <div class="main">
-            <div class = "container">
-                <div class="row pt-5">
-                    <div class="home-text col-mid-8 col-sm-12 mt-5">
-											<!-- Use SESSIon to store and display the name of the user when log in -->
-                        <h1>Welcome Back!  <?php echo $_SESSION["name"]; ?></h1>
-                        <p>Start your day with your happy smile!</p>
-                        <ul class="section-btn">
-                          <button type="button" data-toggle="modal" data-target="#recordModal"><span data-hover="Record New Staff">Record New Staff Here!</span></button>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+				<div class="main" id="main-background">
+				    <div class = "container">
+				        <div class="row pt-5">
+				            <div class="home-text col-mid-8 col-sm-12 mt-5">
+				              <!-- Use SESSION to store and display the name of the user when log in -->
+				                <h1>Welcome Back!  <?php echo $_SESSION["name"]; ?></h1>
+				                <p>Start your day with your happy smile!</p>
+				                <ul class="section-btn">
+				                  <button type="button" data-toggle="modal" data-target="#recordModal"><span data-hover="Record New Staff">Record New Staff Here!</span></button>
+				                </ul>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 
 				<!-- footer -->
         <section id="contact">
@@ -290,7 +291,7 @@ Student ID: B1801196
                 throw new Error("This is not an error. This is just to abort javascript.")
             }
         }
-
+				//event property
 			document.getElementById('submit').onsubmit = 	usernameBlankValidation, passwordBlankValidation,nameBlankValidation,phoneNoBlankValidation,dateBlankValidation,phoneNumValidation,checkEmail,nameValidation;
 
         </script>

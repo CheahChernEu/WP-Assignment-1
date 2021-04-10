@@ -16,7 +16,7 @@ Student ID: B1801196
 				<link href='https://fonts.googleapis.com/css?family=Bevan' rel='stylesheet'>
 				<link href='https://fonts.googleapis.com/css?family=Gugi' rel='stylesheet'>
 
-        <link rel="stylesheet" type="text/css" href="staffCSS.css">
+        <link rel="stylesheet" type="text/css" href="managerStaff.css">
 
     </head>
     <body>
@@ -66,7 +66,7 @@ Student ID: B1801196
               </nav>
         </header>
 
-        <div class="main">
+        <div class="main" id="main-background">
             <div class = "container" style="overflow-x:auto;">
 
                 <div class="row pt-5">
