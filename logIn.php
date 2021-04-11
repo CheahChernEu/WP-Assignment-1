@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Login Homepage</title>
-	<link rel="stylesheet" type="text/css" href="loginStyling.css">
+	<link rel="stylesheet" type="text/css" href="LoginStyling.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="background: url(background2.jpg) fixed; background-size: cover;background-position: center center;position: relative;">
