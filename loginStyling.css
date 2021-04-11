@@ -16,6 +16,7 @@ body {
 	margin: -20px 0 50px;
 }
 
+/* text */
 h1 {
 	font-weight: bold;
 	margin: 0;
@@ -44,6 +45,7 @@ a {
 	margin: 15px 0;
 }
 
+/* button */
 button {
 	border-radius: 20px;
 	border: 1px solid #FF4B2B;
@@ -76,6 +78,7 @@ button:hover{
   color: black;
 }
 
+//form
 form {
 	background-color: #FFFFFF;
 	display: flex;
@@ -95,6 +98,7 @@ input {
 	width: 100%;
 }
 
+/* container */
 .container {
 	background-color: #fff;
 	border-radius: 10px;
