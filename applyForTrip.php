@@ -76,9 +76,9 @@ Student ID: B1801134
                   $sql_run = mysqli_query($conn, $sql);
                   ?>
                 </div>
-                <div id = "tableMain">
-                  <table class="content-table">
-                    <tr class="header-row" style="background-color: orange;">
+                <div id = "tableMain" style="overflow-y: scroll;">
+                  <table class="content-table table-bordered table-secondary table table-dark table-responsive">
+                    <tr class="header-row" style="background-color: orange; color: black;">
                       <th>CTID</th>
                       <th>Type</th>
                       <th>Description</th>

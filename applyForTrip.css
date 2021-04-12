@@ -102,17 +102,7 @@ p{
     width: 100%;
 }
 
-.content-table{
-    border-collapse: collapse;
-    font-size: 1.0vw;
-    width: 100%;
-}
-
-tr:nth-child(even){background-color: #f2f2f2;}
-
-tr:nth-child(odd){background-color: white}
-
-.content-row:hover{background-color: lightgrey;}
+.content-row:hover{background-color: slategrey; color: black}
 
 #applyForTrip{
   cursor: pointer;
@@ -122,6 +112,7 @@ tr:nth-child(odd){background-color: white}
   background: url(backgroundPic.jpeg) fixed;
   background-size: cover;
   background-position: center center;
+  overflow-y: scroll;
   position: relative;
 }
 

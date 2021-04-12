@@ -13,7 +13,7 @@ Student ID: B1801134
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="viewApplicationStatus.css">
+        <link rel="stylesheet" type="text/css" href="ViewApplicationStatus.css">
     </head>
     <body>
         <header>
@@ -78,8 +78,8 @@ Student ID: B1801134
                     ?>
                   </div>
                   <div id = "table-main">
-                    <table class = "content-table">
-                      <tr class = "header-row" style="background-color: orange;">
+                    <table class = "content-table table-bordered table-secondary table table-dark table-responsive">
+                      <tr class = "header-row" style="background-color: orange; color: black;">
                         <th>CTID</th>
                         <th>Trip Date</th>
                         <th>Trip Description</th>

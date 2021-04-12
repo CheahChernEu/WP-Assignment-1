@@ -101,17 +101,7 @@ p{
     width: 100%;
 }
 
-.content-table{
-    border-collapse: collapse;
-    font-size: 1.0vw;
-    width: 100%;
-}
-
-tr:nth-child(even){background-color: #f2f2f2;}
-
-tr:nth-child(odd){background-color: white}
-
-.content-row:hover{background-color: lightgrey;}
+.content-row:hover{background-color: slategrey; color: black}
 
 #main-section{
   background: url(backgroundPic.jpeg) 50% 0 repeat-y fixed;
