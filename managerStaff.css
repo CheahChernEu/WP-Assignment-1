@@ -121,6 +121,25 @@ p{
     font-family: 'Nosifer',sans-serif;
 }
 
+/* table from ManageApplication.php */
+#tripTable{
+height:290%;
+display:block;
+overflow-y:scroll;
+min-width:100%;
+position: absolute;
+}
+
+/* table from application.php */
+#applicationTable{
+  height:290%;
+  display:block;
+  overflow-y:scroll;
+  min-width:100%;
+  position: absolute;
+
+}
+
 .section-btn{
     margin: 32px 0 0 0;
     padding: 0;

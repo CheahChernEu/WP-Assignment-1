@@ -13,9 +13,9 @@ Student ID: B1801196
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="Document.css">
+        <link rel="stylesheet" type="text/css" href="document.css">
     </head>
-    <body style="background: url(background5.jpg) fixed; background-size: cover;background-position: center center;position: relative;">
+    <body style="background: url(background5.jpg) fixed; background-size: cover;background-position: center center;position: relative;min-height:100vh;">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top bg">
                 <div class="container">

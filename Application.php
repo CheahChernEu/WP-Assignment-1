@@ -65,9 +65,9 @@ Student ID: B1801196
         </header>
 
         <div class="main" id="main-background">
-            <div class = "container" style="overflow-x:auto;">
-                <div class="row pt-5" table-wrapper-scroll-y my-custom-scrollbar>
-                    <div class="home-text col-md-12 col-sm-12 mt-5">
+            <div class = "container" style="margin:auto;margin-top:150px;min-width:40%;">
+                <div class="row" >
+                    <div class="home-text col-xl-12 col-lg-12 col-md-12 col-sm-12">
                       <?php
                       //connect to mysql
                         $conn = new mysqli("localhost","root","", "crs");
@@ -98,7 +98,7 @@ Student ID: B1801196
 
                         <!-- All application that come with the crisis trip !-->
 
-                        <table id="table-row" class="table table-bordered table-secondary table table-dark col-md-12 col-sm-5 mt-5 " id="cTripTable" style="margin:auto;">
+                        <table id="table-row" class="table table-bordered table-secondary table table-dark" id="applicationTable">
 													 <form action="function.php" method="POST" class="form-control">
                             <thead>
                             <tr class=" table-warning" style="color:black;" >

@@ -22,7 +22,7 @@ Student ID: B1801196
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top bg">
-                <div class="container">
+                <div class="container" >
                 <a class="navbar-brand" href="staff.php">CRS.ORG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars text-light" aria-hidden="true"></i>
@@ -67,10 +67,9 @@ Student ID: B1801196
         </header>
 
         <div class="main" id="main-background">
-            <div class = "container" style="overflow-x:auto;">
-
-                <div class="row pt-5">
-                    <div class="home-text col-md-8 col-sm-12 mt-5 mb-1">
+            <div class = "container " style="margin:auto;margin-top:150px;min-width:82%;">
+                <div class="row" >
+                    <div class="home-text col-xl-12 col-lg-11 col-md-12 col-sm-12">
                       <?php
                       //connect to mysql
                         $conn = new mysqli("localhost","root","", "crs");
@@ -103,9 +102,9 @@ Student ID: B1801196
 
                         <!-- All crisis trip that staff in-charge !-->
 
-                        <table class="table table-bordered table-secondary table table-dark mt-4" id="cTripTable">
+                        <table class="table table-bordered table-secondary table table-dark" id="tripTable">
                           <form action="function.php" method="POST" class="form-control">
-                            <thead>
+                            <thead >
                             <tr class=" table-warning" style="color:black;" >
                               <th class="text-center">Select Checkbox</th>
                               <th class="text-center">Trip ID</th>
