@@ -102,7 +102,7 @@ Student ID: B1801196
 
                         <!-- All crisis trip that staff in-charge !-->
 
-                        <table class="table table-bordered table-secondary table table-dark" id="tripTable">
+                        <table id="table-row" class="table table-bordered table-secondary table table-dark table-responsive" id="tripTable">
                           <form action="function.php" method="POST" class="form-control">
                             <thead >
                             <tr class=" table-warning" style="color:black;" >

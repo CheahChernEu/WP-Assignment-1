@@ -65,7 +65,7 @@ Student ID: B1801196
         </header>
 
         <div class="main" id="main-background">
-            <div class = "container" style="margin:auto;margin-top:150px;min-width:40%;">
+            <div class = "container" style="margin:auto;margin-top:250px; max-width:60%;">
                 <div class="row" >
                     <div class="home-text col-xl-12 col-lg-12 col-md-12 col-sm-12">
                       <?php
@@ -98,7 +98,7 @@ Student ID: B1801196
 
                         <!-- All application that come with the crisis trip !-->
 
-                        <table id="table-row" class="table table-bordered table-secondary table table-dark" id="applicationTable">
+                        <table  id="table-row applicationTable" class="table table-bordered table-secondary table table-dark table-responsive" >
 													 <form action="function.php" method="POST" class="form-control">
                             <thead>
                             <tr class=" table-warning" style="color:black;" >
